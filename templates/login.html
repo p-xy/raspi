@@ -1,24 +1,56 @@
 {% extends "base.html" %}
+{% block head %}
+<style>
+
+</style>
+
+{% endblock %}
 {% block title %} login {% endblock %}
 {% block content %}
 
 <div class="container">
     <div class="row">
-        <div class="col-md-3 center-block" >
+        <!--头-->
+        <br>
+        <div class="col-md-4 col-md-offset-4 ">
+            <div>
+                <h1 class="page-header">
+                    <p class="text-primary text-center">智能家居</p><br>
+                    <blockquote>
+                        <p>智能的核心是思维，一切思维归于计算.</p>
+                        <footer class="text-right"><cite>Thomas Hobbes</cite></footer>
+                    </blockquote>
+                </h1>
+            </div>
+        </div>
+
+        <!--登陆表单-->
+        <div class="col-md-4 col-md-offset-4 ">
             <form ation="" method="post">
-                <div class="form-group" >
+                <div class="form-group">
                     <label for="email" >Email</label>
-                    <input type="email" class="form-control" id="email" placeholder="Email">
-                    <br>
-                    <label for="password">Passeord</label>
-                    <input type="password" class="form-control" id="password" placeholder="Password">
-                    <br>
-                    <button type="submit" class="bnt btn-success">submit</button>
+                    <input type="email" class="form-control input-lg " id="email" placeholder="Email">
+                </div>
 
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control input-lg" id="password" placeholder="Password">
+                </div>
 
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox">Remember me
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit"  value="Login" class="btn btn-primary ">
+                    <input type="reset"   value="Cancel" class="btn btn-danger">
                 </div>
             </form>
         </div>
+
+
     </div>
 </div>
 {% endblock %}
