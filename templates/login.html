@@ -1,40 +1,56 @@
-{% extends "base.html" %}
-{% block head %}
-<style>
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>登录</title>
+    <!--bootstrap css-->
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+    <style>
+        .position{
+            position:absolute;
+            left:0;
+            right:0;
+            top:0;
+            bottom:0;
+            margin:auto;
+            }
+    </style>
+</head>
+<body>
 
-</style>
-
-{% endblock %}
-{% block title %} login {% endblock %}
-{% block content %}
-
-<div class="container">
+<div class="container position">
     <div class="row">
-        <!--头-->
-        <br>
-        <div class="col-md-4 col-md-offset-4 ">
+        <!--标题-->
+        <div class="col-md-4 col-md-offset-4">
             <div>
-                <h1 class="page-header">
-                    <p class="text-primary text-center">智能家居</p><br>
+                <h1 class="page-header text-center text-primary"><b>Smart Home </b></h1>
                     <blockquote>
                         <p>智能的核心是思维，一切思维归于计算.</p>
                         <footer class="text-right"><cite>Thomas Hobbes</cite></footer>
                     </blockquote>
-                </h1>
             </div>
         </div>
+        <!--头像-->
+        <div class="col-md-4 col-md-offset-4">
+            <div>
+                <img src="/static/source/img/login.jpg" class="img-responsive center-block img-circle" width="80" height="80" alt="这是我家" />
 
+                <h5 class=" text-center ">只有我才可以登录啦.<br>
+                    <small class="text-right"><em>—by房主留言</em></small>
+                </h5>
+            </div>
+        </div>
         <!--登陆表单-->
         <div class="col-md-4 col-md-offset-4 ">
             <form ation="" method="post">
                 <div class="form-group">
                     <label for="email" >Email</label>
-                    <input type="email" class="form-control input-lg " id="email" placeholder="Email">
+                    <input type="email" class="form-control input-lg " id="email" placeholder="告诉我支付宝帐号">
                 </div>
 
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" class="form-control input-lg" id="password" placeholder="Password">
+                    <input type="password" class="form-control input-lg" id="password" placeholder="以及支付密码">
                 </div>
 
                 <div class="checkbox">
@@ -50,7 +66,13 @@
             </form>
         </div>
 
-
     </div>
 </div>
-{% endblock %}
+    <!--引入背景-->
+    <canvas id="Mycanvas" style="align-content:center;background-color:#fff"></canvas>
+    <script src="/static/bootstrap/js/canvas.js"></script>
+	<!--导入js-->
+	<script src="/static/boostrap/js/jquery.min.js"></script>
+	<script src="/static/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>
