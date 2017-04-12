@@ -5,14 +5,36 @@
     {% block head %}{% endblock %}
     <title>{% block title %}{% endblock %}</title>
     <!--bootstrap-->
-    <link rel="stylesheet" href="/static/boostrap/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
 </head>
 <body>
-    {% block content %}{% endblock %}
-
+	<div class="navbar navbar-default">
+		<div class="container">
+			<!--brand && toggle-->
+			<div class="navbar-header">				
+				<a href="/" class="navbar-brand">
+					<span class="glyphicon glyphicon-home"></span>首页
+				</a>
+				<button type="button" class="navbar-toggle " data-toggle="collapse" data-target="#myheader">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>	
+			<!--nav links-->			
+			<div class="collapse navbar-collapse" id="myheader" >
+				<ul class="nav navbar-nav">
+					<li><a href="/look">查看</a></li>
+					<li><a href="/control">控制</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>	
+	{% block content %}{% endblock %}
 
     <!--js-->
     <script src="/static/bootstrap/js/jquery.min.js"></script>
-    <script src="/static/bootstrap/js/boostrap.min.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
