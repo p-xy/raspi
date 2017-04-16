@@ -39,20 +39,15 @@
         <!--登陆表单-->
         <div class="col-md-4 col-md-offset-4 ">
             <form ation="" method="post">
+                {% csrf_token %}
                 <div class="form-group">
-                    <label for="email" >账户</label>
-                    <input type="email" class="form-control input-lg" id="email" placeholder="Email">
+                    <label >账户</label>
+                    <input type="email" class="form-control input-lg" name="email" placeholder="Email">
                 </div>
 
                 <div class="form-group">
-                    <label for="password">密码</label>
-                    <input type="password" class="form-control input-lg" id="password" placeholder="Password">
-                </div>
-
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox">记住我
-                    </label>
+                    <label>密码</label>
+                    <input type="password" class="form-control input-lg" name="password" placeholder="Password">
                 </div>
 
                 <div class="form-group">
@@ -69,7 +64,7 @@
     <canvas id="Mycanvas" style="align-content:center;background-color:#fff"></canvas>
     <script src="/static/bootstrap/js/canvas.js"></script>
 	<!--导入js-->
-	<script src="/static/boostrap/js/jquery.min.js"></script>
+	<script src="/static/bootstrap/js/jquery.min.js"></script>
 	<script src="/static/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
