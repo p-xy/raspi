@@ -3,19 +3,10 @@
 <head>
     <meta charset="utf-8">
     <title>{% block title %}{% endblock %}</title>
-    <!--添加bootstrap3-->
-    {# Load the tag library #}
-	{% load bootstrap3 %}
-
-	{# Load CSS and JavaScript #}
-	{% bootstrap_css %}
-	{% bootstrap_javascript %}
-
-	{# Display django.contrib.messages as Bootstrap alerts #}
-	{% bootstrap_messages %}
+    <!--添加bootstrap-->
+	<link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
 	<!--添加favicon-->
 	<link rel="shortcut icon" type="image/png" href="/static/img/favicon.ico"/>
-
 	<!--block for head-->
 	{% block head %}{% endblock %}
 
@@ -40,11 +31,15 @@
 				<ul class="nav navbar-nav">
 					<li><a href="/look">查看</a></li>
 					<li><a href="/control">控制</a></li>
+					<li><a href="/logout"><p class="text-right">退出</p></a></li>
 				</ul>
 			</div>
 		</div>
 	</div>	
 	{% block content %}{% endblock %}
+	<!--js-->
+	<script src="/static/bootstrap/js/jquery.min.js"></script>
+	<script src="/static/bootstrap/js/bootstrap.min.js"></script>
 
 </body>
 </html>
