@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
     <!--添加favicon-->
 	<link rel="shortcut icon" type="image/png" href="/static/img/favicon.ico"/>
-
     <style>
         .position{
             position:absolute;
@@ -20,7 +19,6 @@
     </style>
 </head>
 <body>
-
 <div class="container position">
     <div class="row">
         <!--标题-->
@@ -33,11 +31,25 @@
                 </blockquote>
             </div>
         </div>
-        <!--头像-->
+        <!--头像和提示-->
         <div class="col-md-4 col-md-offset-4">
             <div>
                 <img src="/static/img/login.png" class=" center-block img-circle" width="120" height="100" />
-                <p class="text-danger text-center">{{ state }}</p>
+                {% if LOGIN %}
+                    <h5 class="text-center text-primary">
+                        <span class="glyphicon glyphicon-bell">：</span>{{ LOGIN }}
+                    </h5>
+                {% endif %}
+                {% if NOT_ACTIVE  %}
+                    <h5 class="text-center text-warning">
+                        <span class="glyphicon glyphicon-warning-sign">：</span>{{ NOT_ACTIVE }}
+                    </h5>
+                {% endif %}
+                {% if ERROR %}
+                    <h5 class="text-center text-danger">
+                        <span class="glyphicon glyphicon-remove-sign">：</span>{{ ERROR }}
+                    </h5>
+                {% endif %}
             </div>
         </div>
         <!--登陆表单-->
@@ -46,23 +58,24 @@
                 <!--防止跨站脚本攻击-->
                 {% csrf_token %}
                 <div class="form-group">
-                    <label >账户</label>
-                    <input type="text" class="form-control input-lg" name="username" placeholder="Username">
+                    <label>账户</label>
+                    <input type="text" class="form-control input-lg " name="username" placeholder="username">
                 </div>
 
                 <div class="form-group">
                     <label>密码</label>
-                    <input type="password" class="form-control input-lg" name="password" placeholder="Password">
+                    <input type="password" class="form-control input-lg" name="password" placeholder="password">
                 </div>
 
                 <div class="form-group">
                     <input type="submit"  value="登录" class="btn btn-primary ">
                     <input type="reset"   value="清除" class="btn btn-danger">
                 </div>
-                <p class="text-left text-danger">(注 ：只有管理员可登录，谢绝外人访问 )</p>
+                <p class="text-left text-muted">
+                    <span class="glyphicon glyphicon-lock"></span>：只有管理员可登录，谢绝外人访问
+                </p>
             </form>
         </div>
-
     </div>
 </div>
     <!--引入背景-->

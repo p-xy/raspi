@@ -4,5 +4,5 @@
 
 <ul>主要用到:
     <li>django 1.11</li>
-    <li>django-bootstrap3</li>
+    <li>bootstrap3</li>
 </ul>

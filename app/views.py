@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect
 from django.template import Template
 from django.contrib import auth
 
-
+# 用户登录
 def login(request):
 	if request.method =='POST':
 		username = request.POST['username']
@@ -17,20 +17,21 @@ def login(request):
 				auth.login(request, user)#登录用户
 				return HttpResponseRedirect('/')#使用重定向而不是render返回首页，可以避免刷新再次提交表单导致出错
 			else:
-				state = '"Sorry,你的账户not is_active，请联系site.admin"'
-				render(request,'login.html',{'state':state})
+				NOT_ACTIVE = '你的账户没有激活，请联系管理员'
+				render(request,'login.html',{'NOT_ACTIVE':NOT_ACTIVE})
 		else:
-			state = '"oohs,你输错帐号或密码啦"'
-			return render(request,'login.html',{'state':state })
+			ERROR = '唉呀好气呀,输入有误'
+			return render(request,'login.html',{'ERROR':ERROR })
 
 	else:
-		state = '”客官，登录后才能访问哦“'
-	return render(request,'login.html',{'state':state})
+		LOGIN = '客官，登录后才能访问噢'
+	return render(request,'login.html',{'LOGIN':LOGIN})
 
-
+# 主页
 def index(request):
 	return render(request,'index.html')
 
+#退出
 def logout(request):
 	return HttpResponseRedirect('/login')
 
