@@ -13,11 +13,11 @@
 </head>
 <body>
 	<div class="navbar navbar-default">
-		<div class="container">
+		<form class="container">
 			<!--brand && toggle-->
 			<div class="navbar-header">				
 				<a href="/" class="navbar-brand">
-					<span class="glyphicon glyphicon-home"></span>首页
+					<span class="glyphicon glyphicon-home"></span>主页
 				</a>
 				<button type="button" class="navbar-toggle " data-toggle="collapse" data-target="#myheader">
 					<span class="sr-only">Toggle navigation</span>
@@ -27,13 +27,18 @@
 				</button>
 			</div>	
 			<!--nav links-->			
-			<div class="collapse navbar-collapse" id="myheader" >
+			<form class="collapse navbar-collapse" id="myheader" >
 				<ul class="nav navbar-nav">
-					<li><a href="/look">查看</a></li>
-					<li><a href="/control">控制</a></li>
-					<li><a href="/logout"><p class="text-right">退出</p></a></li>
+					<li><a href="/look"><span class="glyphicon glyphicon-eye-open"></span> 查看状态 </a></li>
+					<li><a href="/control"><span class="glyphicon glyphicon-cog"></span> 控制开关 </a></li>
 				</ul>
-			</div>
+
+				<ul class=" nav navbar-nav navbar-right">
+					{{ username }}
+					<li><a href="/logout"><span class="glyphicon glyphicon-user"></span> 退出</a></li>
+				</ul>
+
+			</form>
 		</div>
 	</div>	
 	{% block content %}{% endblock %}

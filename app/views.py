@@ -1,11 +1,11 @@
 #-*-coding:utf-8 -*-
 
-from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.shortcuts import render,redirect
 from django.template import Template
 from django.contrib import auth
+from django.contrib.auth.decorators import login_required
 
-# 用户登录
+# 登录
 def login(request):
 	if request.method =='POST':
 		username = request.POST['username']
@@ -15,12 +15,12 @@ def login(request):
 		if user is not None:
 			if user.is_active:
 				auth.login(request, user)#登录用户
-				return HttpResponseRedirect('/')#使用重定向而不是render返回首页，可以避免刷新再次提交表单导致出错
+				return redirect('/',{'username':username})#使用重定向而不是render返回首页，可以避免刷新再次提交表单导致出错
 			else:
 				NOT_ACTIVE = '你的账户没有激活，请联系管理员'
 				render(request,'login.html',{'NOT_ACTIVE':NOT_ACTIVE})
 		else:
-			ERROR = '唉呀好气呀,输入有误'
+			ERROR = '嗨呀好气哦,输入有误'
 			return render(request,'login.html',{'ERROR':ERROR })
 
 	else:
@@ -28,10 +28,28 @@ def login(request):
 	return render(request,'login.html',{'LOGIN':LOGIN})
 
 # 主页
+@login_required()
 def index(request):
+
 	return render(request,'index.html')
+
+
+#查看
+@login_required()
+def look(request):
+	return render(request,'look.html')
+
+#控制
+@login_required()
+def control(request):
+	return render(request,'control.html')
 
 #退出
 def logout(request):
-	return HttpResponseRedirect('/login')
+	auth.logout(request)
+	return redirect('/login')
+
+
+
+
 

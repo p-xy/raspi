@@ -34,8 +34,8 @@
         <!--头像和提示-->
         <div class="col-md-4 col-md-offset-4">
             <div>
-                <img src="/static/img/login.png" class=" center-block img-circle" width="120" height="100" />
                 {% if LOGIN %}
+                <img src= "/static/img/login.png" class=" center-block img-circle" width="120" height="100" />
                     <h5 class="text-center text-primary">
                         <span class="glyphicon glyphicon-bell">：</span>{{ LOGIN }}
                     </h5>
@@ -46,6 +46,7 @@
                     </h5>
                 {% endif %}
                 {% if ERROR %}
+                <img src= "/static/img/input_error.png" class=" center-block img-circle" width="120" height="100" />
                     <h5 class="text-center text-danger">
                         <span class="glyphicon glyphicon-remove-sign">：</span>{{ ERROR }}
                     </h5>
