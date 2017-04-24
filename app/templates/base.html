@@ -10,16 +10,51 @@
 	<!--block for head-->
 	{% block head %}{% endblock %}
 
+	<style>
+		.bg{
+			position: relative;
+            height:300px;
+            background-color: #27ae60;
+            color: #fff;
+
+			}
+
+        .nav-docs{
+        	padding-top:20px;
+    		background-color: #27ae60;
+    		border-bottom:0;
+    		margin-bottom:0;
+    		}
+
+    	.navbar-default .navbar-nav > li > a {color: #fff;}
+
+    	footer {
+			position:absolute;
+			bottom: 0;
+			width: 100%;
+			height: 40px;
+			color: #fff;
+			background-color:#27ae60;
+			text-align: center;
+			padding-top:20px;
+			padding-bottom:40px;
+			border:1px solid #26aa5e;
+			}
+	</style>
+
 </head>
 <body>
-	<div class="navbar navbar-default">
-		<form class="container">
+<div class="bg">
+	<!--导航条-->
+	<div role="navigation" class="navbar navbar-fixed-top navbar-default nav-docs">
+		<div class="container">
 			<!--brand && toggle-->
-			<div class="navbar-header">				
-				<a href="/" class="navbar-brand">
-					<span class="glyphicon glyphicon-home"></span>主页
+			<div class="navbar-header">
+				<a  class="navbar-brand">
+					<br>
+					<img class="img-rounded" src="/static/img/小埋.png" width="120px" height="160px";>
 				</a>
-				<button type="button" class="navbar-toggle " data-toggle="collapse" data-target="#myheader">
+				<button type="button" class="navbar-toggle collapsed navbar-right" data-toggle="collapse" data-target="#myheader"  >
 					<span class="sr-only">Toggle navigation</span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
@@ -27,24 +62,39 @@
 				</button>
 			</div>	
 			<!--nav links-->			
-			<form class="collapse navbar-collapse" id="myheader" >
-				<ul class="nav navbar-nav">
-					<li><a href="/look"><span class="glyphicon glyphicon-eye-open"></span> 查看状态 </a></li>
+			<form class="collapse navbar-collapse" id="myheader">
+				<ul class="nav navbar-nav navbar-right ">
+					<li><a href="/" ><span class="glyphicon glyphicon-home"></span>主页</a></li>
+					<li><a href="/look" ><span class="glyphicon glyphicon-eye-open"></span> 查看状态 </a></li>
 					<li><a href="/control"><span class="glyphicon glyphicon-cog"></span> 控制开关 </a></li>
+					<li><a href="/logout"><span class="glyphicon glyphicon-user"></span> 退出 </a></li>
 				</ul>
-
-				<ul class=" nav navbar-nav navbar-right">
-					{{ username }}
-					<li><a href="/logout"><span class="glyphicon glyphicon-user"></span> 退出</a></li>
-				</ul>
-
 			</form>
 		</div>
-	</div>	
+	</div>
+	<!--matrix简介-->
+	<div  style="padding-top:80px; text-align:center;">
+		<h1  style="font-size:56px;text-shadow:-5px 5px 0px rgba(0,0,0,.2);">Matrix</h1>
+		<p style="font-size:21px;font-weight: 200; ">查看、控制家居设备的Web服务，让家尽在掌控</p>
+		<p style="font-weight: 200;">基于树莓派，使用Python-django、Bootstrap开发</p>
+		<p style="font-weight:200;">源码托管于Github :
+			<a href="https://www.github.com/wonderX0/raspi.git"><img src="/static/img/favicon.ico"></a>
+		</p>
+	</div>
+
+</div>
+
 	{% block content %}{% endblock %}
+<!--页脚-->
+<footer>
+	<div class="container">
+		<span>© 2017 </span>
+		<span >by 桂林电子科技大学1300240121</span>
+	</div>
+
+</footer>
 	<!--js-->
 	<script src="/static/bootstrap/js/jquery.min.js"></script>
 	<script src="/static/bootstrap/js/bootstrap.min.js"></script>
-
 </body>
 </html>
