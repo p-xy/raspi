@@ -8,5 +8,7 @@
     <li>django 1.11</li>
     <li>bootstrap3.3.7</li>
 </ul>
-<p>效果图:</p>
-<img src="/app/static/img/登录样式.png" width="50%" height="50%" alt="登录样式">
+<p>登录页</p>
+<img src="/app/static/img/登录样式.png" width="70%" height="70%" alt="登录样式">
+<p>主页</p>
+<img src="/app/static/img/主页.png" width="70%" height="70%" alt="主页">
