@@ -9,89 +9,164 @@
 	<link rel="shortcut icon" type="image/png" href="/static/img/favicon.ico"/>
 	<!--block for head-->
 	{% block head %}{% endblock %}
-
 	<style>
-		.bg{
+
+		/* header 绿色背景 */
+		.banner-green{
 			position: relative;
             height:300px;
             background-color: #27ae60;
             color: #fff;
-
 			}
 
-        .nav-docs{
+		/* 导航条定位 */
+        .nav-position{
         	padding-top:20px;
     		background-color: #27ae60;
     		border-bottom:0;
     		margin-bottom:0;
     		}
 
+		/* 设置导航条链接颜色为白色 */
     	.navbar-default .navbar-nav > li > a {color: #fff;}
 
-    	footer {
-			position:absolute;
-			bottom: 0;
-			width: 100%;
-			height: 40px;
-			color: #fff;
-			background-color:#27ae60;
-			text-align: center;
-			padding-top:20px;
-			padding-bottom:40px;
-			border:1px solid #26aa5e;
-			}
+		/*  内容区高为100%可以使footer置底部，前提是html,body也设置为高100% */
+		.content{
+					min-height: 100%;
+					height: auto;
+					height: 100%;
+
+					}
+
+
+
+		/* 页脚 */
+		.footer1{
+					background-color:#27ae60;
+					color: #fff;
+					line-height:1.6;
+					padding:30px;
+					font-weight:200;
+
+					}
+
+		.footer2{
+
+					background-color:#26aa60;
+					color: #fff;
+					padding:15px;
+					text-align:center;
+					font-weight:200;
+
+					}
+
+
+		html,body {	height: 100%; }
+
+		a{
+			color:#fff;
+		}
+
+
 	</style>
 
 </head>
 <body>
-<div class="bg">
-	<!--导航条-->
-	<div role="navigation" class="navbar navbar-fixed-top navbar-default nav-docs">
-		<div class="container">
-			<!--brand && toggle-->
-			<div class="navbar-header">
-				<a  class="navbar-brand">
-					<br>
-					<img class="img-rounded" src="/static/img/小埋.png" width="120px" height="160px";>
-				</a>
-				<button type="button" class="navbar-toggle collapsed navbar-right" data-toggle="collapse" data-target="#myheader"  >
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-			</div>	
-			<!--nav links-->			
-			<form class="collapse navbar-collapse" id="myheader">
-				<ul class="nav navbar-nav navbar-right ">
-					<li><a href="/" ><span class="glyphicon glyphicon-home"></span>主页</a></li>
-					<li><a href="/look" ><span class="glyphicon glyphicon-eye-open"></span> 查看状态 </a></li>
-					<li><a href="/control"><span class="glyphicon glyphicon-cog"></span> 控制开关 </a></li>
-					<li><a href="/logout"><span class="glyphicon glyphicon-user"></span> 退出 </a></li>
-				</ul>
-			</form>
+<!--带导航的页头-->
+<header role="banner">
+	<div class="banner-green">
+		<!--导航条-->
+		<nav role="navigation" class="navbar navbar-static-top navbar-default nav-position">
+			<div class="container">
+				<!--brand && toggle-->
+				<div class="navbar-header">
+					<a  class="navbar-brand">
+						<br>
+						<img class="img-rounded" src="/static/img/小埋.png" width="120px" height="160px";>
+					</a>
+					<button type="button" class="navbar-toggle collapsed navbar-right" data-toggle="collapse" data-target="#myheader"  >
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+				<!--nav links-->
+				<form class="collapse navbar-collapse" id="myheader">
+					<ul class="nav navbar-nav navbar-right ">
+						<li><a href="/"><span class="glyphicon glyphicon-home"></span>主页</a></li>
+						<li><a href="/look" ><span class="glyphicon glyphicon-eye-open"></span> 查看状态 </a></li>
+						<li><a href="/control"><span class="glyphicon glyphicon-cog"></span> 控制开关 </a></li>
+						<li><a href="/logout"><span class="glyphicon glyphicon-user"></span> 退出 </a></li>
+					</ul>
+				</form>
+			</div>
+		</nav>
+		<!--matrix简介-->
+		<div style="text-align:center;">
+			<h1 style="font-size:56px;text-shadow:-5px 5px 0px rgba(0,0,0,.2);">Matrix</h1>
+			<p style="font-size:21px;font-weight: 200;">查看、控制家居设备的Web服务，让家尽在掌控</p>
+			<p style="font-weight:200;">基于树莓派，使用Python-django、Bootstrap开发</p>
+			<p style="font-weight:200;">源码托管于Github :
+				<a href="https://www.github.com/wonderX0/raspi.git"><img src="/static/img/favicon.ico"></a>
+			</p>
 		</div>
 	</div>
-	<!--matrix简介-->
-	<div  style="padding-top:80px; text-align:center;">
-		<h1  style="font-size:56px;text-shadow:-5px 5px 0px rgba(0,0,0,.2);">Matrix</h1>
-		<p style="font-size:21px;font-weight: 200; ">查看、控制家居设备的Web服务，让家尽在掌控</p>
-		<p style="font-weight: 200;">基于树莓派，使用Python-django、Bootstrap开发</p>
-		<p style="font-weight:200;">源码托管于Github :
-			<a href="https://www.github.com/wonderX0/raspi.git"><img src="/static/img/favicon.ico"></a>
-		</p>
-	</div>
+</header>
 
-</div>
+<!--内容区-->
+<main role="main">
+	{% block content %} {% endblock %}
+</main>
 
-	{% block content %}{% endblock %}
 <!--页脚-->
 <footer>
-	<div class="container">
-		<span>© 2017 </span>
-		<span >by 桂林电子科技大学1300240121</span>
-	</div>
+	<div class="row footer1">
+		<!--空块-->
+		<div class="col-md-2"></div>
+		<div class="col-md-3" >
+			<ul>
+				<h4>官方网站</h4>
+				<li><a href="https://www.python.org/">Python.org</a></li>
+				<li><a href="https://www.raspberrypi.org/">树莓派官网</a></li>
+				<li><a href="https://www.djangoproject.com/">Django official website</a></li>
+				<li><a href="">Bootstrap中文网</a></li>
+				<li><a href="https://jquery.com">Jquery.com</a></li>
+			</ul>
+		</div>
+		<div class="col-md-3">
+			<ul >
+				<h4>参考链接</h4>
+				<li><a href="http://www.cnblogs.com/vamei/archive/2012/09/13/2682778.html">Raspberry Pi 3 无显示器 安装指南</a></li>
+				<li><a href="http://www.cnblogs.com/vamei/archive/2012/10/10/2718229.html" >从树莓派开始玩电脑</a></li>
+				<li><a href="http://www.cnblogs.com/fnng/category/581256.html">虫师的博客园：随笔分类-django</a></li>
+				<li><a href="http://www.cnblogs.com/vamei/archive/2012/09/13/2682778.html">Vamei的博客园：Python快速教程</a></li>
+				<li><a href="http://elinux.org/RPi_GPIO_Code_Samples">RPi GPIO Code Samples</a></li>
+			</ul>
+		</div>
+		<div class="col-md-3">
+			<ul>
+				<h4 >Just For Fun</h4>
+				<p>
+					这是我做的第一个网站，<br>
+					一次不算成熟的试炼，<br>仅有
+					一个登录系统，<br>it's so
+					simple and stupid。
 
+
+				</p>
+
+			</ul>
+		</div>
+		<!--空块-->
+		<div class="col-md-2"></div>
+	</div>
+	<!--版权-->
+	<div class="row footer2 >
+		<div class="col-md-12">
+			<p style="margin:0;">Copyright © 2017 by GUET 1300240121</p>
+		</div>
+	</div>
 </footer>
 	<!--js-->
 	<script src="/static/bootstrap/js/jquery.min.js"></script>
