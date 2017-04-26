@@ -8,7 +8,7 @@
     <!--添加favicon-->
 	<link rel="shortcut icon" type="image/png" href="/static/img/favicon.ico"/>
     <style>
-        .position{
+        1position{
             position:absolute;
             left:0;
             right:0;
@@ -16,74 +16,131 @@
             bottom:0;
             margin:auto;
             }
+
+        body{
+
+            background-attachment: fixed;
+            background:#fff url("/static/img/2.jpg") no-repeat left top;
+            background-size:100%;
+
+            }
+        /* 透明块*/
+        .signup-form {
+            margin-left: auto;
+            margin-right: auto;
+            margin-top:100px;
+            text-align: center;
+            background-color: hsla(0,0%,100%,.7);
+            width: 363px;
+            padding:1px 0 50px 0;
+            border-radius: 4px;
+            }
+
+
+        /*表单输入样式*/
+        .input-field {
+            margin:auto;
+            width: 300px;
+            padding: 0;
+            border: 1px solid #dfebf2;
+            background-color: #fff;
+            border-radius: 4px;
+            height:40px;
+        }
+        /* 登录按钮样式*/
+        .form-submit{
+            width:300px;
+            height:40px;
+            line-height:40px;
+            background-color:#27ae60;
+            color:#fff;
+            font-weight:500;
+            border-radius: 4px;
+            border: 1px solid #26aa60;
+            margin-top:10px;
+
+            }
+        .raspi{
+            font-size:60px;
+            color:#27ae60;
+            }
+        h5{
+            font-weight:200;
+            }
+        h1{ color:#26aa60;
+            font-size:56px;
+            }
+
     </style>
 </head>
 <body>
-<div class="container position">
-    <div class="row">
-        <!--标题-->
-        <div class="col-md-4 col-md-offset-4">
-            <div>
-                <h1 class="page-header text-center text-primary">登录系统</h1>
-                <blockquote>
-                    <p>你若能绕过经验，便会有创新之举.</p>
-                    <footer class="text-right">史蒂夫·乔布斯</footer>
-                </blockquote>
-            </div>
-        </div>
+<div>
+    <div class="signup-form">
+        <h1>Raspi</h1>
+        <p style="font-weight:300;">让生活更加智能</p>
+
         <!--头像和提示-->
-        <div class="col-md-4 col-md-offset-4">
-            <div>
-                {% if LOGIN %}
-                <img src= "/static/img/login.png" class=" center-block img-circle" width="120" height="100" />
-                    <h5 class="text-center text-primary">
-                        <span class="glyphicon glyphicon-bell">：</span>{{ LOGIN }}
-                    </h5>
-                {% endif %}
-                {% if NOT_ACTIVE  %}
-                    <h5 class="text-center text-warning">
-                        <span class="glyphicon glyphicon-warning-sign">：</span>{{ NOT_ACTIVE }}
-                    </h5>
-                {% endif %}
-                {% if ERROR %}
-                <img src= "/static/img/input_error.png" class=" center-block img-circle" width="120" height="100" />
-                    <h5 class="text-center text-danger">
-                        <span class="glyphicon glyphicon-remove-sign">：</span>{{ ERROR }}
-                    </h5>
-                {% endif %}
-            </div>
+        <div style="padding:20px 0;">
+            {% if LOGIN %}
+            <img src= "/static/img/login.png" class=" center-block img-circle" width="100" height="80" />
+            <h5 class="text-center ">
+                <span class="glyphicon glyphicon-bell">：</span>{{ LOGIN }}
+            </h5>
+            {% endif %}
+            {% if NOT_ACTIVE  %}
+            <h5 class="text-center text-warning">
+                <span class="glyphicon glyphicon-warning-sign">：</span>{{ NOT_ACTIVE }}
+            </h5>
+            {% endif %}
+            {% if ERROR %}
+            <img src= "/static/img/input_error.png" class=" center-block img-circle" width="100" height="80" />
+            <h5 class="text-center text-danger">
+                <span class="glyphicon glyphicon-remove-sign">：</span>{{ ERROR }}
+            </h5>
+            {% endif %}
         </div>
+
+
         <!--登陆表单-->
-        <div class="col-md-4 col-md-offset-4 ">
+        <div >
             <form ation="" method="post">
                 <!--防止跨站脚本攻击-->
                 {% csrf_token %}
-                <div class="form-group">
-                    <label>账户</label>
-                    <input type="text" class="form-control input-lg " name="username" placeholder="username">
+                <div >
+                    <input type="text" class="input-field"  name="username" placeholder=" 账户" value>
+                    <input type="password" class="input-field" name="password" placeholder=" 密码">
                 </div>
-
-                <div class="form-group">
-                    <label>密码</label>
-                    <input type="password" class="form-control input-lg" name="password" placeholder="password">
+                <div>
+                    <button type="submit" class="form-submit">登录</button>
                 </div>
-
-                <div class="form-group">
-                    <input type="submit"  value="登录" class="btn btn-primary ">
-                    <input type="reset"   value="清除" class="btn btn-danger">
-                </div>
-                <p class="text-left text-muted">
-                    <span class="glyphicon glyphicon-lock"></span>：只有管理员可登录，谢绝外人访问
-                </p>
             </form>
         </div>
     </div>
 </div>
-    <!--引入背景-->
+<!--
     <canvas id="Mycanvas" style="align-content:center;background-color:#fff"></canvas>
     <script src="/static/js/canvas.js"></script>
+    -->
     <!--js-->
     <script src="/static/bootstrap/js/jquery.min.js"></script>
 	<script src="/static/bootstrap/js/bootstrap.min.js"></script>
+
+<!--
+<script type="text/javascript">
+function qiehuan(i){
+var n = i;
+if(n>3)
+n=1;
+var bg = document.body||document.documentElement;
+bg.style.background = "url('static/img/"+n+".jpg')";
+n++;
+setTimeout("qiehuan("+n+")",5000); //1秒轮换一张 2000为两秒
+}
+qiehuan(1);
+</script>
+
+-->
+
+
 </body>
 </html>
