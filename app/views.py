@@ -20,11 +20,11 @@ def login(request):
 				NOT_ACTIVE = '你的账户没有激活，请联系管理员'
 				render(request,'login.html',{'NOT_ACTIVE':NOT_ACTIVE})
 		else:
-			ERROR = '嗨呀好气哦,输入有误'
+			ERROR = 'Typing Error'
 			return render(request,'login.html',{'ERROR':ERROR })
 
 	else:
-		LOGIN = '客官，登录后才能访问噢'
+		LOGIN = 'Login System'
 	return render(request,'login.html',{'LOGIN':LOGIN})
 
 # 主页
