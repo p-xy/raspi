@@ -56,7 +56,7 @@
 		<div>
 			<div class="text-center">
 				{% if state %}
-				<h4>ok,灯已： {{ state }}</p>
+				<h4>灯已： {{ state }}</p>
 				{% else %}
 				<h4>灯的开关控制</h2>
 				{% endif %}
@@ -67,7 +67,6 @@
 				{% csrf_token %}
 				<div class="form-group text-center">
 					<select class="form-control input-field " name="switch">
-						<option value="" selected="true" disabled="true">-- 开或关 --</option>
 						<option>开</option>
 						<option>关</option>
 					</select>

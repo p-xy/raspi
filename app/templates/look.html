@@ -1,6 +1,19 @@
 {% extends "base.html" %}
 {% block head %}
 <style>
+	/* 透明块*/
+        .led{
+            margin-left: auto;
+            margin-right: auto;
+            margin-top:30px;
+            text-align: center;
+            background-color: transparent;
+            width: 300px;
+            padding:10px 0 50px 0;
+            border-radius: 20px;
+            border: 1px solid green;
+
+            }
 
 </style>
 {% endblock %}
@@ -8,7 +21,11 @@
 {% block content %}
 <div class="container">
 	<h1 class="text-center">查看页面</h1>
-	<h1 class="text-center">{{ p2 }}</h1>
+	<div class="led">
+		<h1 class="text-center">灯已：{{ p2 }}</h1>
+		<img src="/static/img/led.png" width="50" height="100">
+		
+	</div>
 
 </div>
 
