@@ -9,6 +9,31 @@
 
 <div class="container">
 	<h1 class="text-center"> 控制页面</h1>
+	<div class="row ">
+		<div class="col-md-4 col-md-offset-4">
+			<div class="text-center">
+				{% if state %}
+				<h2>ok,you submit is: {{ state }}</p>
+				{% else %}
+				<h2>please submit to control led</h2>
+				{% endif %}
+				
+			</div>
+			<form class="form-inline" action="" method="post">
+				{% csrf_token %}
+				<div class="form-group">
+					<select class="form-control" name="switch">
+						<option value="" selected="true" disabled="true">-- please choose OPEN or CLOSE --</option>
+						<option>OPEN</option>
+						<option>CLOSE</option>	
+					</select>
+					<input class="btn btn-primary" type="submit" value="submit">
+				</div>	
+			</form>
+		</div>	
+			
+		
+	</div>
 
 </div>
 

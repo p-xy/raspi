@@ -4,6 +4,8 @@ from django.shortcuts import render,redirect
 from django.template import Template
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
+from hardware import LED
+from threading import Thread
 
 # 登录
 def login(request):
@@ -38,11 +40,23 @@ def index(request):
 @login_required()
 def look(request):
 	return render(request,'look.html')
+	
+	
 
 #控制
 @login_required()
-def control(request):
-	return render(request,'control.html')
+def control(request):	
+			
+	if request.method=="POST":
+		''' LED'''
+		state = request.POST.get('switch')
+		led = LED(40,state)
+		led.switch()		
+		return render(request,'control.html',{'state':state })				
+				
+	else:
+		
+		return render(request,'control.html')
 
 #退出
 def logout(request):
