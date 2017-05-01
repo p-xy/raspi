@@ -6,6 +6,7 @@ from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from hardware import LED
 from threading import Thread
+from .models import LED_FORM
 
 # 登录
 def login(request):
@@ -39,7 +40,9 @@ def index(request):
 #查看
 @login_required()
 def look(request):
-	return render(request,'look.html')
+	p1 = LED_FORM.objects.get(id=1)
+	p2 = p1.switch
+	return render(request,'look.html',{ 'p2':p2 })
 	
 	
 
@@ -50,6 +53,9 @@ def control(request):
 	if request.method=="POST":
 		''' LED'''
 		state = request.POST.get('switch')
+		p1 = LED_FORM.objects.get(id=1)
+		p1.switch=state
+		p1.save()
 		led = LED(40,state)
 		led.switch()		
 		return render(request,'control.html',{'state':state })				

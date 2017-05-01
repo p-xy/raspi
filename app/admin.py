@@ -1,4 +1,4 @@
 from django.contrib import admin
-from .models import User,UserAdmin
+from .models import LED_FORM,UserAdmin
 
-admin.site.register(User,UserAdmin)
+admin.site.register(LED_FORM,UserAdmin)

@@ -1,34 +1,81 @@
 {% extends "base.html" %}
 {% block head %}
 <style>
+	/* 透明块*/
+        .led{
+            margin-left: auto;
+            margin-right: auto;
+            margin-top:30px;
+            text-align: center;
+            background-color: transparent;
+            width: 300px;
+            padding:10px 0 50px 0;
+            border-radius: 20px;
+            border: 1px solid green;
+
+            }
+
+
+        /*表单输入样式*/
+        .input-field {
+            margin:auto;
+            width: 250px;
+            border: 1px solid green;
+            background-color: #fff;
+            border-radius: 4px;
+            height:40px;
+            font-size:16px;
+            
+
+        }
+        /* 登录按钮样式*/
+        .submit-field{
+            width:250px;
+            height:40px;
+            line-height:40px;
+            background-color:#27ae60;
+            color:#fff;
+            letter-spacing:1px;
+            border-radius: 4px;
+            border: 1px solid #27ae60;
+            font-size:16px;
+            margin-top:0px;
+            font-weight:500;
+
+            }
 
 </style>
 {% endblock %}
 {% block title%}控制{% endblock %}
 {% block content %}
 
-<div class="container">
-	<h1 class="text-center"> 控制页面</h1>
+<div class="led">
+	<h1>控制灯</h1>
+	<img src="/static/img/led.png" width="50" height="100">
 	<div class="row ">
-		<div class="col-md-4 col-md-offset-4">
+		<div>
 			<div class="text-center">
 				{% if state %}
-				<h2>ok,灯已： {{ state }}</p>
+				<h4>ok,灯已： {{ state }}</p>
 				{% else %}
-				<h2>灯的开关控制</h2>
+				<h4>灯的开关控制</h2>
 				{% endif %}
-				
 			</div>
-			<form class="form-inline" action="" method="post">
+	<div class="row">			
+		<div >
+			<form action="" method="post">
 				{% csrf_token %}
-				<div class="form-group">
-					<select class="form-control" name="switch">
+				<div class="form-group text-center">
+					<select class="form-control input-field " name="switch">
 						<option value="" selected="true" disabled="true">-- 开或关 --</option>
 						<option>开</option>
 						<option>关</option>
 					</select>
-					<input class="btn btn-primary" type="submit" value="submit">
-				</div>	
+					
+				</div>
+				<div>
+					<input class="submit-field" type="submit" value="提交">
+				</div>
 			</form>
 		</div>	
 			
