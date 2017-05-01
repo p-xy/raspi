@@ -4,7 +4,7 @@ from django.contrib import admin
 
 class LED_FORM(models.Model):
     switch = models.CharField(max_length=30)
-    id = models.IntegerField(primary_key=True,max_length=30)
+    id = models.IntegerField(primary_key=True)
 
 class UserAdmin(admin.ModelAdmin):
     list_display = ('id','switch')

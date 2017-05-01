@@ -12,6 +12,7 @@
             padding:10px 0 50px 0;
             border-radius: 20px;
             border: 1px solid green;
+            color:#000;
 
             }
 
@@ -56,13 +57,13 @@
 		<div>
 			<div class="text-center">
 				{% if state %}
-				<h4>灯已： {{ state }}</p>
+				<h4 >灯已： {{ state }}</p>
 				{% else %}
 				<h4>灯的开关控制</h2>
 				{% endif %}
 			</div>
 	<div class="row">			
-		<div >
+		<div>
 			<form action="" method="post">
 				{% csrf_token %}
 				<div class="form-group text-center">
@@ -76,11 +77,8 @@
 					<input class="submit-field" type="submit" value="提交">
 				</div>
 			</form>
-		</div>	
-			
-		
+		</div>						
 	</div>
-
 </div>
 
 
