@@ -24,10 +24,10 @@ class LED(object):
 	def switch(self):
 		GPIO.setup(self.pin_number,GPIO.OUT)# set up the channel as output.
 				
-		if self.open_or_close == 'OPEN':
+		if self.open_or_close == '开':
 			GPIO.output(self.pin_number,GPIO.HIGH)
 			
-		elif self.open_or_close == 'CLOSE':
+		elif self.open_or_close == '关':
 			GPIO.output(self.pin_number,GPIO.LOW)
 		
 				

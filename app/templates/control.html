@@ -13,9 +13,9 @@
 		<div class="col-md-4 col-md-offset-4">
 			<div class="text-center">
 				{% if state %}
-				<h2>ok,you submit is: {{ state }}</p>
+				<h2>ok,灯已： {{ state }}</p>
 				{% else %}
-				<h2>please submit to control led</h2>
+				<h2>灯的开关控制</h2>
 				{% endif %}
 				
 			</div>
@@ -23,9 +23,9 @@
 				{% csrf_token %}
 				<div class="form-group">
 					<select class="form-control" name="switch">
-						<option value="" selected="true" disabled="true">-- please choose OPEN or CLOSE --</option>
-						<option>OPEN</option>
-						<option>CLOSE</option>	
+						<option value="" selected="true" disabled="true">-- 开或关 --</option>
+						<option>开</option>
+						<option>关</option>
 					</select>
 					<input class="btn btn-primary" type="submit" value="submit">
 				</div>	
