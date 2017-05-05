@@ -7,6 +7,10 @@ from django.contrib.auth.decorators import login_required
 from hardware import LED
 from threading import Thread
 from .models import LED_FORM
+from . import dht11
+import time
+import datetime
+import RPi.GPIO as GPIO
 
 # 登录
 def login(request):
@@ -40,9 +44,21 @@ def index(request):
 #查看
 @login_required()
 def look(request):
+	#LED
 	p1 = LED_FORM.objects.get(id=1)
 	p2 = p1.switch
-	return render(request,'look.html',{ 'p2':p2 })
+	
+	# DHT11
+	instance = dht11.DHT11(8)
+	result = instance.read()
+	if result.is_valid():
+		p4 ="Last valid input: " + str(datetime.datetime.now())
+        p5 = "Temperature: %d C" % result.temperature
+        p6 = "Humidity: %d %%" % result.humidity
+        GPIO.cleanup(8)
+        
+	
+	return render(request,'look.html',{ 'p2':p2 ,'p5':p5,'p6':p6 })
 	
 	
 
