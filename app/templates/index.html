@@ -6,16 +6,28 @@
 {% endblock %}
 {% block title%}主页{% endblock %}
 {% block content %}
-<div class="container">
-	<div class="row">
-		<div class="col-md-12 text-center">
-
-			<h1 class="text-center">主页展示</h1>
-			<img src="/static/img/树莓派.jpg" >
-
+<div class='container'>
+	<div class='row'>
+		<div>
+			<div class='col-md-4'>
+				<img src="/static/img/image1.jpg" >
+				<p class="text-center">{{ confidence }}</p>			
+			</div>
+			<div class='col-md-4'>
+				<textarea>
+			{{ JSON }}
+		</textarea>
+				
+			</div>
+			<div class='col-md-4'>
+				<img src="/static/img/image2.jpg" >
+				
+			</div>
 		</div>
 	</div>
-
+	<div>
+		
+	</div>
 </div>
 
 

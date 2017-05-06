@@ -5,12 +5,13 @@ from django.template import Template
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from hardware import LED
-from threading import Thread
 from .models import LED_FORM
 from . import dht11
 import time
 import datetime
 import RPi.GPIO as GPIO
+import requests
+
 
 # 登录
 def login(request):
@@ -37,8 +38,27 @@ def login(request):
 # 主页
 @login_required()
 def index(request):
+	
+	# 你的face++的应用api_key和api_secret
+	api_key = 'vigklkgJlKAFaSOuRfQGNcNAPz2Jrkfk'
+	api_secret = 'rnLgNWHIACuE6KcpWIlxf13Bc6uDpqDW'
 
-	return render(request,'index.html')
+	# 接入face++ 人脸比对API
+	url = 'https://api-cn.faceplusplus.com/facepp/v3/compare?api_key=%s&api_secret=%s' % (api_key, api_secret)
+
+	# 载入两个本地图片进行比对
+	files = {
+		'image_file1':open('app/static/img/image1.jpg','rb'),
+		'image_file2':open('app/static/img/image2.jpg','rb'),
+		}
+
+	# 二进制文件，需要用post multipart/form-data的方式上传
+	r = requests.post(url=url, files=files)
+	#从json数据中获取比对值，值为[0,100]
+	confidence = r.json().get('confidence')
+	JSON = r.json()
+
+	return render(request,'index.html',{ 'confidence':confidence,'JSON':JSON,})
 
 
 #查看
