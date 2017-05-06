@@ -73,7 +73,7 @@ def look(request):
 	result = instance.read()
 	if result.is_valid():
 		p4 ="Last valid input: " + str(datetime.datetime.now())
-        p5 = "温度: %d C" % result.temperature
+        p5 = "温度: %d ℃" % result.temperature
         p6 = "湿度: %d %%" % result.humidity
         GPIO.cleanup(8)
         
