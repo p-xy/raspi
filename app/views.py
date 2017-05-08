@@ -4,14 +4,18 @@ from django.shortcuts import render,redirect
 from django.template import Template
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
-from hardware import LED
-from .models import LED_FORM
-from . import dht11
-import time
-import datetime
-import RPi.GPIO as GPIO
 import requests
 import json
+import time
+import datetime
+
+import RPi.GPIO as GPIO
+from .models import LED_FORM
+from hardware.led import LED
+from hardware import dht11
+
+
+
 
 
 # 登录
