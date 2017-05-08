@@ -16,6 +16,50 @@
 		height:430px
 	}
 	
+	
+	/*表单输入样式*/
+        .input-field {
+            margin:auto;
+            width: 250px;
+            border: 1px solid green;
+            background-color: #fff;
+            border-radius: 4px;
+            height:40px;
+            font-size:16px;
+            
+
+        }
+        /* 登录按钮样式*/
+        .submit-field{
+            width:250px;
+            height:40px;
+            line-height:40px;
+            background-color:#27ae60;
+            color:#fff;
+            letter-spacing:1px;
+            border-radius: 4px;
+            border: 1px solid #27ae60;
+            font-size:16px;
+            margin-top:0px;
+            font-weight:500;
+
+            }
+            
+        /* 透明块*/
+        .div1{
+            margin-left: auto;
+            margin-right: auto;
+            margin-top:30px;
+            text-align: center;
+            background-color: transparent;
+            width: 300px;
+            padding:10px 0 10px 0;
+            border-radius: 5px;
+            border: 1px solid green;
+            color:#000;
+
+            }
+	
 </style>
 {% endblock %}
 {% block title%}主页{% endblock %}
@@ -42,6 +86,20 @@
 			</div>
 			<h3 >smillar: {{ confidence }}</h3>
 		</div>
+	</div>
+	<div class="row div1">
+		<form action="" method="post">
+			{% csrf_token %}			
+			<div class="form-group text-center">
+				<select class="form-control input-field" name="face_or_camera">
+					<option>face</option>
+					<option>camera</option>
+				</select>
+			</div>
+			<div>
+				<input class="submit-field" type="submit" value="submit">
+			</div>								
+		</form>
 	</div>
 </div>
 

@@ -31,7 +31,7 @@ class LED(object):
 			GPIO.output(self.pin_number,GPIO.LOW)
 		
 				
-										#GPIO.output(self.pin_number,GPIO.HIGH) #another pin has been connected to Ground pin,so HIGH is open.
+										
 			
 			
 	

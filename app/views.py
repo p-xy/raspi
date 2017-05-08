@@ -12,60 +12,50 @@ import datetime
 import RPi.GPIO as GPIO
 from .models import LED_FORM
 from hardware.led import LED
+from hardware.face import FACE
 from hardware import dht11
+from picamera import PiCamera
 
 
-
-
-
-# 登录
-def login(request):
-	if request.method =='POST':
-		username = request.POST['username']
-		password = request.POST['password']
-		#验证登录，正确则authenticate()返回一个User对象，错误则返回一个None类
-		user = auth.authenticate(username=username, password=password)
-		if user is not None:
-			if user.is_active:
-				auth.login(request, user)#登录用户
-				return redirect('/',{'username':username})#使用重定向而不是render返回首页，可以避免刷新再次提交表单导致出错
-			else:
-				NOT_ACTIVE = '你的账户没有激活，请联系管理员'
-				render(request,'login.html',{'NOT_ACTIVE':NOT_ACTIVE})
-		else:
-			ERROR = 'Typing Error'
-			return render(request,'login.html',{'ERROR':ERROR })
-
-	else:
-		LOGIN = 'Login System'
-	return render(request,'login.html',{'LOGIN':LOGIN})
 
 # 主页
 @login_required()
 def index(request):
-	# 你的face++的应用api_key和api_secret
-	api_key = 'vigklkgJlKAFaSOuRfQGNcNAPz2Jrkfk'
-	api_secret = 'rnLgNWHIACuE6KcpWIlxf13Bc6uDpqDW'
+	if request.method == 'POST':
+		face_or_camera = request.POST['face_or_camera']
+		if face_or_camera =='face':
+			# 你的face++的应用api_key和api_secret
+			api_key = 'vigklkgJlKAFaSOuRfQGNcNAPz2Jrkfk'
+			api_secret = 'rnLgNWHIACuE6KcpWIlxf13Bc6uDpqDW'
 
-	# 接入face++ 人脸比对API
-	url = 'https://api-cn.faceplusplus.com/facepp/v3/compare?api_key=%s&api_secret=%s' % (api_key, api_secret)
+			# 接入face++ 人脸比对API
+			url = 'https://api-cn.faceplusplus.com/facepp/v3/compare?api_key=%s&api_secret=%s' % (api_key, api_secret)
 
-	# 载入两个本地图片进行比对
-	files = {
-		'image_file1':open('app/static/img/image1.jpg','rb'),
-		'image_file2':open('app/static/img/image2.jpg','rb'),
-		}
+			# 载入两个本地图片进行比对
+			files = {
+				'image_file1': open('app/static/img/image1.jpg', 'rb'),
+				'image_file2': open('app/static/img/image2.jpg', 'rb'),
+			}
 
-	# 二进制文件，需要用post multipart/form-data的方式上传
-	r = requests.post(url=url, files=files)
-	#从json数据中获取比对值，值为[0,100]
-	confidence = r.json().get('confidence')
-	JSON = r.json()
-	return render(request,'index.html',{ 'confidence':confidence,'JSON':json.dumps(JSON),})
-		
-		
-		
+			# 二进制文件，需要用post multipart/form-data的方式上传
+			r = requests.post(url=url, files=files)
+			#从json数据中获取比对值，值为[0,100]
+			confidence = r.json().get('confidence')
+			JSON = r.json()
+
+			return render(request,'index.html',{ 'JSON':JSON,'confidence':confidence })
+			
+		else:
+			camera = PiCamera()
+			camera.start_preview()
+			time.sleep(5)
+			camera.capture('app/static/img/image.jpg')
+			camera.close()
+			
+			return render(request,'index.html')
 	
+	return render(request,'index.html')
+			
 
 
 #查看
@@ -83,8 +73,7 @@ def look(request):
         p5 = "温度: %d ℃" % result.temperature
         p6 = "湿度: %d %%" % result.humidity
         GPIO.cleanup(8)
-        
-	
+        	
 	return render(request,'look.html',{ 'p2':p2 ,'p5':p5,'p6':p6 })
 	
 	
@@ -113,6 +102,27 @@ def logout(request):
 	return redirect('/login')
 
 
+# 登录
+def login(request):
+	if request.method =='POST':
+		username = request.POST['username']
+		password = request.POST['password']
+		#验证登录，正确则authenticate()返回一个User对象，错误则返回一个None类
+		user = auth.authenticate(username=username, password=password)
+		if user is not None:
+			if user.is_active:
+				auth.login(request, user)#登录用户
+				return redirect('/',{'username':username})#使用重定向而不是render返回首页，可以避免刷新再次提交表单导致出错
+			else:
+				NOT_ACTIVE = '你的账户没有激活，请联系管理员'
+				render(request,'login.html',{'NOT_ACTIVE':NOT_ACTIVE})
+		else:
+			ERROR = 'Typing Error'
+			return render(request,'login.html',{'ERROR':ERROR })
+
+	else:
+		LOGIN = 'Login System'
+	return render(request,'login.html',{'LOGIN':LOGIN})
 
 
 
