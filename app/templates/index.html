@@ -1,32 +1,47 @@
 {% extends "base.html" %}
 {% block head %}
 <style>
-
+	.bigPic{
+		border:1px solid #000;
+		margin:30px;
+		padding:20px 20px;
+		height:500px;
+		
+	}
+		
+		
+	.pic{
+		border:1px solid #000;
+		padding:0px 20px 20px 20px;
+		height:430px
+	}
+	
 </style>
 {% endblock %}
 {% block title%}主页{% endblock %}
 {% block content %}
 <div class='container'>
 	<div class='row'>
-		<div>
-			<div class='col-md-4'>
-				<img src="/static/img/image1.jpg" >
-				<p class="text-center">{{ confidence }}</p>			
+		<div class='bigPic text-center'>
+			
+			<div class='col-md-4 pic'>
+				<h1 >face 1</h1>
+				<img src="/static/img/image1.jpg" width='320' height='320' >			
 			</div>
-			<div class='col-md-4'>
-				<textarea>
-			{{ JSON }}
-		</textarea>
-				
+			
+			<div class='col-md-4 pic'>
+				<h1 >face 2</h1>
+				<img src="/static/img/image2.jpg" width='320' height='320' >	
 			</div>
-			<div class='col-md-4'>
-				<img src="/static/img/image2.jpg" >
-				
+					
+			<div class='col-md-4 pic'>
+				<h1>JSON</h1>
+				<textarea style='width:320px;height:320px;'>
+					{{ JSON }}
+				</textarea>				
 			</div>
+			<h3 >smillar: {{ confidence }}</h3>
 		</div>
-	</div>
-	<div>
-		
 	</div>
 </div>
 

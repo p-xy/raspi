@@ -11,6 +11,7 @@ import time
 import datetime
 import RPi.GPIO as GPIO
 import requests
+import json
 
 
 # 登录
@@ -38,7 +39,6 @@ def login(request):
 # 主页
 @login_required()
 def index(request):
-	
 	# 你的face++的应用api_key和api_secret
 	api_key = 'vigklkgJlKAFaSOuRfQGNcNAPz2Jrkfk'
 	api_secret = 'rnLgNWHIACuE6KcpWIlxf13Bc6uDpqDW'
@@ -57,8 +57,11 @@ def index(request):
 	#从json数据中获取比对值，值为[0,100]
 	confidence = r.json().get('confidence')
 	JSON = r.json()
-
-	return render(request,'index.html',{ 'confidence':confidence,'JSON':JSON,})
+	return render(request,'index.html',{ 'confidence':confidence,'JSON':json.dumps(JSON),})
+		
+		
+		
+	
 
 
 #查看
