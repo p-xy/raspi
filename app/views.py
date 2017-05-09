@@ -21,7 +21,7 @@ from hardware import dht11
 def index(request):
 	if request.method == 'POST':
 		face_or_camera = request.POST['face_or_camera']
-		if face_or_camera =='人脸比对':
+		if face_or_camera ==u'人脸比对':
 			# 你的face++的应用api_key和api_secret
 			api_key = 'vigklkgJlKAFaSOuRfQGNcNAPz2Jrkfk'
 			api_secret = 'rnLgNWHIACuE6KcpWIlxf13Bc6uDpqDW'
@@ -43,18 +43,21 @@ def index(request):
 
 			return render(request,'index.html',{ 'JSON':JSON,'confidence':confidence })
 			
-		else:
+		elif face_or_camera ==u'拍个照片':
+			
 			#实例化一个相机类
 			camera = PiCamera()
+			
+			camera.resolution = (1900,1080)
 			camera.start_preview()
 			#相机启动需要一定时间
-			time.sleep(5)
+			time.sleep(2)
 			#拍取一张照片，保存在app/static/img目录下
 			camera.capture('app/static/img/image2.jpg')
 			#关闭相机
 			camera.close()
 			
-			return redirect(request,'index.html')
+			return redirect('/')
 	
 	return render(request,'index.html')
 			
@@ -72,7 +75,8 @@ def look(request):
 	instance = dht11.DHT11(8)
 	result = instance.read()
 	if result.is_valid():
-		#p4 ="Last valid input: " + str(datetime.datetime.now())
+		''' p4 ="Last valid input: " + str(datetime.datetime.now()) '''
+		
         p5 = "温度: %d ℃" % result.temperature
         p6 = "湿度: %d %%" % result.humidity
         GPIO.cleanup(8)
