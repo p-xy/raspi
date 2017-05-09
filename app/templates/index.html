@@ -84,7 +84,7 @@
 					{{ JSON }}
 				</textarea>				
 			</div>
-			<h3 >smillar: {{ confidence }}</h3>
+			<h3 >人脸比对置信度: {{ confidence }}，60以上可认为是同一个人</h3>
 		</div>
 	</div>
 	<div class="row div1">
@@ -92,12 +92,12 @@
 			{% csrf_token %}			
 			<div class="form-group text-center">
 				<select class="form-control input-field" name="face_or_camera">
-					<option>face</option>
-					<option>camera</option>
+					<option>人脸比对</option>
+					<option>拍个照片</option>
 				</select>
 			</div>
 			<div>
-				<input class="submit-field" type="submit" value="submit">
+				<input class="submit-field" type="submit" value="提交">
 			</div>								
 		</form>
 	</div>
