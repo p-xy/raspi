@@ -2,22 +2,25 @@
 {% block head %}
 <style>
 		
-		
+	/*相框*/
 	.pic{
 		
 		padding:20px 20px 10px 20px;
 		border:1px solid #888888;	
 		box-shadow:10px 10px 5px #888888;
 	}
+	/*拍照片按钮*/
 	.take_photo{
 		padding-top:10px;
 		
 	}
+	/*人脸比对响应*/
 	.response{
 		padding:10px;
 		border:1px solid #888888;
 		height:150px;
 	}
+	/*人脸比对按钮*/
 	.compare{
 		padding:40px 0px 20px 0px;
 		text-align:center;
@@ -31,75 +34,67 @@
 
 {% block title %} 人脸比对  {% endblock %}
 
-
-
-
 {% block content %}
 <div class='container'>
 	<div class="row">
 		<div class="col-md-12 text-center">
-			<h1>function display</h1>
-			<p>this is face compare ,it can konw two picture</p>
-			<p>if you want to user , just take two photo to compare</p>
+			<h1>功能演示</h1>
+			<p>即刻体验Face++的人脸比对能力，对比照片核验用户身份</p>
+			<p>该功能是基于Compare API搭建的，运用Face++的人脸比对技术，打造智能家居刷脸控制</p>
 		</div>
 	</div>
-	
-	
-	
-	
+	<!--图片-->
 	<div class='row'>
 		<div class='col-md-6 text-center'>
-			<h1 >face 1</h1>
+			<h1 >图一</h1>
 			<div class="pic">
 				<div>
 					<img  id="img1" src="/static/img/image1.jpg" width='512' height='324' >
 				</div>
 				<div class="take_photo">
-					<input type="submit" class="btn btn-default" id="take_a_photo1"	value="take a photo">
+					<input type="submit" class="btn btn-default" id="take_a_photo1"	value="点击拍一张照片">
 				</div>	
 			</div>									
 		</div>		
 			
 		<div class='col-md-6 text-center '>
-			<h1 >face 2</h1>
+			<h1>图二</h1>
 			<div class="pic">
 				<div>
 					<img id="img2" src="/static/img/image2.jpg" width='512' height='324' >
 				</div>
 				<div class="take_photo">	
-					<input type="submit" class="btn btn-default " id="take_a_photo2"	value="take a photo">	
+					<input type="submit" class="btn btn-default " id="take_a_photo2"	value="点击拍一张照片">
 				</div>	
 			</div>	
 		</div>			
 		
 	</div>
-	
+	<!--人脸比对按钮-->
 	<div class="row">
 		<div class="col-md-12 compare">
-			<input type="submit" id="face_compare" value="face compare" class="btn btn-primary text-center ">
+			<input type="submit" id="face_compare" value="点击进行人脸比对" class="btn btn-primary text-center ">
 		</div>
 	</div>
 	
-	
-	
+	<!--人脸比对相应-->
 	<div class='row'>
 		<div class="col-md-6">
 				
 			<div class="response">
-				<h3>face compare result</h3>
+				<h3>比对结果</h3>
 			</div>
 		</div>
 		
 		<div class="col-md-6">
 			<div class="response">
-				<h3>the response json</h3>
+				<h3>Response JSON</h3>
 			</div>
-			
 		</div>	
 	</div>
 	
 	<script>
-		// take a photo by img1
+		// 异步拍一张照片img1
 		$(function(){
 			$("#take_a_photo1").click(function(){
 				$.ajax({
@@ -117,7 +112,7 @@
 			});
 		});
 		
-	// take a photo by img2
+	// 异步拍一张照片img2
 		$(function(){
 			$("#take_a_photo2").click(function(){
 				$.ajax({
@@ -134,17 +129,10 @@
 				});
 			});
 		});
+
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		// face compare
+		// 人脸比对
 		$(function(){
 			$("#face_compare").click(function(){
 				$.ajax({

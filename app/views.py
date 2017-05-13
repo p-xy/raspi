@@ -15,38 +15,49 @@ from .models import LED_FORM
 from hardware.led import LED
 from hardware import dht11
 
+
+
 @login_required()
 def take_a_photo(request):
-	# initial a camera class
+	# 实例化一个相机类
 	camera = PiCamera()
-	#picture 's name is the datetime 
+
+	#照片名由时间组成
 	now = datetime.datetime.now()
 	face_name = now.strftime('%Y-%m-%d-%H-%M-%S')+'.jpg'
-	# picture 's address
+
+	# 拍好照片的存放地址
 	face_address = 'app/static/face/'
-	#picture
+
+	#拍一个照片需要提供照片名和存放地址
 	face = face_address + face_name
+
+	#需要把刚拍的照片返回给ajax以更新客户端的图片，但模板的img src不需要app/后缀
 	img = "/static/face/" + face_name
+
+	#设置相机的分辨率
 	camera.resolution = (1900,1080)
-	#only user screen can start preview
+	#相机预览，很可惜只有接上显示屏才能预览，ssh方式无法预览
 	camera.start_preview()
-	#camera need time to prepare 
+
+	#相机启动需要点时间
 	time.sleep(2)
-	# ok,take a picture
+	# 拍照，把大小裁剪为1024x768，太大不适合提交给人脸比对
 	camera.capture(face,resize=(1024,768))
 	
-	#exit camera
+	#关闭相机，否则http一直在连接
 	camera.close()
-	
+	#返回照片名以更新客户端照片
 	return HttpResponse(img)
 	
 
-
+#人脸比对功能
 @login_required()
 def face_compare(request):
+	#获取要人脸比对的两张图片，加上app/后缀才能在服务端找到本地图片
 	face1 = 'app/' + request.GET['img1']
 	face2 = 'app/' + request.GET['img2']
-	# 你的face++的应用api_key和api_secret
+	# face++的应用api_key和api_secret
 	api_key = 'vigklkgJlKAFaSOuRfQGNcNAPz2Jrkfk'
 	api_secret = 'rnLgNWHIACuE6KcpWIlxf13Bc6uDpqDW'
 	# 接入face++ 人脸比对API
@@ -69,7 +80,7 @@ def face_compare(request):
 	
 
 
-#人脸比对
+#人脸比对的页面
 @login_required()
 def face(request):
 	return render(request,'face.html')
@@ -106,8 +117,9 @@ def index(request):
 			
 			#实例化一个相机类
 			camera = PiCamera()
-			
+			#设置相机分辨率
 			camera.resolution = (1900,1080)
+			#相机预览，很可惜只能在连接了显示器才能预览
 			camera.start_preview()
 			#相机启动需要一定时间
 			time.sleep(2)
@@ -122,7 +134,7 @@ def index(request):
 			
 
 
-#查看
+#查看状态
 @login_required()
 def look(request):
 	#读取LED开关值
@@ -161,7 +173,7 @@ def control(request):
 		led = LED(40,state)
 		#LED.switch（）为LED类的开关控制方法
 		led.switch()		
-		return HttpResponse('led has :' + state)				
+		return HttpResponse('灯已 :' + state)
 				
 	else:
 		
