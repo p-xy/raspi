@@ -15,35 +15,33 @@
             color:#000;
 
             }
-
-
-        /*表单输入样式*/
-        .input-field {
-            margin:auto;
-            width: 250px;
-            border: 1px solid green;
-            background-color: #fff;
-            border-radius: 4px;
-            height:40px;
-            font-size:16px;
-            
-
-        }
-        /* 登录按钮样式*/
-        .submit-field{
+		.open_button{
             width:250px;
             height:40px;
             line-height:40px;
             background-color:#27ae60;
             color:#fff;
-            letter-spacing:1px;
             border-radius: 4px;
             border: 1px solid #27ae60;
             font-size:16px;
+            margin:30px;
+            
+            }     
+        
+            
+        .close_button{
+            width:250px;
+            height:40px;
+            line-height:40px;
+            background-color:#000;
+            color:#fff;
+            border-radius: 4px;
+            border: 1px solid #000;
+            font-size:16px;
             margin-top:0px;
-            font-weight:500;
-
+            
             }
+            
 
 </style>
 {% endblock %}
@@ -55,32 +53,64 @@
 	<img src="/static/img/led.png" width="50" height="100">
 	<div class="row ">
 		<div>
-			<div class="text-center">
-				{% if state %}
-				<h4 >灯已： {{ state }}</p>
-				{% else %}
-				<h4>灯的开关控制</h2>
-				{% endif %}
-			</div>
+			<h4>灯的开关控制</h2>
+		</div>
+	</div>
+			
 	<div class="row">			
 		<div>
-			<form action="" method="post">
-				{% csrf_token %}
-				<div class="form-group text-center">
-					<select class="form-control input-field " name="switch">
-						<option>开</option>
-						<option>关</option>
-					</select>
+			<div>
+				<input id="led_open" class="open_button" type="submit" value="open led">
+			</div>
+			
+			<div>
+				<input id ="led_close" class="close_button" type="submit" value="close led">
+			</div>
 					
-				</div>
-				<div>
-					<input class="submit-field" type="submit" value="提交">
-				</div>
-			</form>
 		</div>						
 	</div>
 </div>
+<script>
+	$(function(){
+		$("#led_open").click(function(){
+			$.ajax({
+				url:"/control",
+				type:'POST',
+				data:{
+					switch:'开',
+					csrfmiddlewaretoken:'{{ csrf_token }}',
+					},
+				dataType:"text",
+				success: function(data){
+					alert(data);
+				},
+			});
+		});
+	});
+	
+	
+	
+	$(function(){
+		$("#led_close").click(function(){
+			$.ajax({
+				url:"/control",
+				type:'POST',
+				data:{
+					switch:'关',
+					csrfmiddlewaretoken:'{{ csrf_token }}',
+					},
+				dataType:"text",
+				success: function(data){
+					alert(data);
+				},
+			});
+		});
+	});
+				
+					
 
+
+</script>
 
 
 {% endblock%}

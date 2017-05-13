@@ -144,7 +144,7 @@ def look(request):
 	
 	
 
-#控制
+#控制LED
 @login_required()
 def control(request):	
 			
@@ -161,7 +161,7 @@ def control(request):
 		led = LED(40,state)
 		#LED.switch（）为LED类的开关控制方法
 		led.switch()		
-		return render(request,'control.html',{'state':state })				
+		return HttpResponse('led has :' + state)				
 				
 	else:
 		
