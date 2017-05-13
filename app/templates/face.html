@@ -62,7 +62,12 @@
 	
 </style>
 {% endblock %}
-{% block title%}主页{% endblock %}
+
+{% block title %} face compare {% endblock %}
+
+
+
+
 {% block content %}
 <div class='container'>
 	<div class='row'>
@@ -70,12 +75,13 @@
 			
 			<div class='col-md-4 pic'>
 				<h1 >face 1</h1>
-				<img src="/static/img/image1.jpg" width='240' height='320' >			
+				<img id="img1" src="/static/img/image1.jpg" width='240' height='320' >			
 			</div>
 			
 			<div class='col-md-4 pic'>
 				<h1 >face 2</h1>
-				<img src="/static/img/image2.jpg" width='240' height='320' >	
+				<img id="img2" src="/static/img/image2.jpg" width='240' height='320' >
+				<input type="submit" class="btn btn-primary" id="take_picture"	value="take a picture">
 			</div>
 					
 			<div class='col-md-4 pic'>
@@ -84,26 +90,15 @@
 					{{ JSON }}
 				</textarea>				
 			</div>
-			<h3 >人脸比对置信度: {{ confidence }}，60以上可认为是同一个人</h3>
+			
 		</div>
 	</div>
-	<div class="row div1">
-		<form action="" method="post">
-			{% csrf_token %}			
-			<div class="form-group text-center">
-				<select class="form-control input-field" name="face_or_camera">
-					<option>人脸比对</option>
-					<option>拍个照片</option>
-				</select>
-			</div>
-			<div>
-				<input class="submit-field" type="submit" value="提交">
-			</div>								
-		</form>
-	</div>
+
 </div>
 
+{% endblock %}
 
 
-{% endblock%}
+
+
 

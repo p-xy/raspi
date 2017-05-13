@@ -15,6 +15,10 @@ from hardware.led import LED
 from hardware import dht11
 
 
+@login_required()
+def face(request):
+	return render(request,'face.html')
+
 
 # 主页
 @login_required()

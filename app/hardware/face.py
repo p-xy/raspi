@@ -1,5 +1,6 @@
 # -*- coding:utf-8 -*-
 import requests
+
 '''
 # 你的face++的应用api_key和api_secret
 api_key = 'vigklkgJlKAFaSOuRfQGNcNAPz2Jrkfk'
@@ -22,6 +23,16 @@ confidence = r.json().get('confidence')
 print (confidence)
 '''
 
+
+
+
+
+
+
+
+
+'''
+
 class FACE(object):
 	
 	def __init__(self,api_key,api_secret,compare_url):
@@ -40,6 +51,6 @@ class FACE(object):
 		
 		print ('confidence')
 		
-	
+'''	
 
 
