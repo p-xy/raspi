@@ -9,7 +9,7 @@ camera = PiCamera()
 now = datetime.datetime.now()
 pic_name = now.strftime('%Y-%m-%d-%H-%M-%S')+'.jpg'
 # picture 's address
-pic_address = 'app/static/img/'
+pic_address = 'app/static/face/'
 #picture
 picture = pic_address + pic_name
 #only user screen can start preview

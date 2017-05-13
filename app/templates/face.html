@@ -1,98 +1,173 @@
 {% extends "base.html" %}
 {% block head %}
 <style>
-	.bigPic{
-		border:1px solid #000;
-		margin:30px;
-		padding:20px 20px;
-		height:500px;
-		
-	}
 		
 		
 	.pic{
-		border:1px solid #000;
-		padding:0px 20px 20px 20px;
-		height:430px
+		
+		padding:20px 20px 10px 20px;
+		border:1px solid #888888;	
+		box-shadow:10px 10px 5px #888888;
 	}
-	
-	
-	/*表单输入样式*/
-        .input-field {
-            margin:auto;
-            width: 250px;
-            border: 1px solid green;
-            background-color: #fff;
-            border-radius: 4px;
-            height:40px;
-            font-size:16px;
-            
-
-        }
-        /* 登录按钮样式*/
-        .submit-field{
-            width:250px;
-            height:40px;
-            line-height:40px;
-            background-color:#27ae60;
-            color:#fff;
-            letter-spacing:1px;
-            border-radius: 4px;
-            border: 1px solid #27ae60;
-            font-size:16px;
-            margin-top:0px;
-            font-weight:500;
-
-            }
-            
-        /* 透明块*/
-        .div1{
-            margin-left: auto;
-            margin-right: auto;
-            margin-top:30px;
-            text-align: center;
-            background-color: transparent;
-            width: 300px;
-            padding:10px 0 10px 0;
-            border-radius: 5px;
-            border: 1px solid green;
-            color:#000;
-
-            }
+	.take_photo{
+		padding-top:10px;
+		
+	}
+	.response{
+		padding:10px;
+		border:1px solid #888888;
+		height:150px;
+	}
+	.compare{
+		padding:40px 0px 20px 0px;
+		text-align:center;
+	}
+	h3{
+		text-align:center;
+	}
 	
 </style>
 {% endblock %}
 
-{% block title %} face compare {% endblock %}
+{% block title %} 人脸比对  {% endblock %}
 
 
 
 
 {% block content %}
 <div class='container'>
-	<div class='row'>
-		<div class='bigPic text-center'>
-			
-			<div class='col-md-4 pic'>
-				<h1 >face 1</h1>
-				<img id="img1" src="/static/img/image1.jpg" width='240' height='320' >			
-			</div>
-			
-			<div class='col-md-4 pic'>
-				<h1 >face 2</h1>
-				<img id="img2" src="/static/img/image2.jpg" width='240' height='320' >
-				<input type="submit" class="btn btn-primary" id="take_picture"	value="take a picture">
-			</div>
-					
-			<div class='col-md-4 pic'>
-				<h1>JSON</h1>
-				<textarea style='width:320px;height:320px;'>
-					{{ JSON }}
-				</textarea>				
-			</div>
-			
+	<div class="row">
+		<div class="col-md-12 text-center">
+			<h1>function display</h1>
+			<p>this is face compare ,it can konw two picture</p>
+			<p>if you want to user , just take two photo to compare</p>
 		</div>
 	</div>
+	
+	
+	
+	
+	<div class='row'>
+		<div class='col-md-6 text-center'>
+			<h1 >face 1</h1>
+			<div class="pic">
+				<div>
+					<img  id="img1" src="/static/img/image1.jpg" width='512' height='324' >
+				</div>
+				<div class="take_photo">
+					<input type="submit" class="btn btn-default" id="take_a_photo1"	value="take a photo">
+				</div>	
+			</div>									
+		</div>		
+			
+		<div class='col-md-6 text-center '>
+			<h1 >face 2</h1>
+			<div class="pic">
+				<div>
+					<img id="img2" src="/static/img/image2.jpg" width='512' height='324' >
+				</div>
+				<div class="take_photo">	
+					<input type="submit" class="btn btn-default " id="take_a_photo2"	value="take a photo">	
+				</div>	
+			</div>	
+		</div>			
+		
+	</div>
+	
+	<div class="row">
+		<div class="col-md-12 compare">
+			<input type="submit" id="face_compare" value="face compare" class="btn btn-primary text-center ">
+		</div>
+	</div>
+	
+	
+	
+	<div class='row'>
+		<div class="col-md-6">
+				
+			<div class="response">
+				<h3>face compare result</h3>
+			</div>
+		</div>
+		
+		<div class="col-md-6">
+			<div class="response">
+				<h3>the response json</h3>
+			</div>
+			
+		</div>	
+	</div>
+	
+	<script>
+		// take a photo by img1
+		$(function(){
+			$("#take_a_photo1").click(function(){
+				$.ajax({
+					url:'/take_a_photo',
+					type:'GET',
+					
+					success: function(data){
+						$("#img1").attr("src",data);
+						alert("success");
+					},
+					error: function(data){
+						aler("error");
+					},
+				});
+			});
+		});
+		
+	// take a photo by img2
+		$(function(){
+			$("#take_a_photo2").click(function(){
+				$.ajax({
+					url:'/take_a_photo',
+					type:'GET',
+					
+					success: function(data){
+						$("#img2").attr("src",data);
+						alert("success");
+					},
+					error: function(data){
+						aler("error");
+					},
+				});
+			});
+		});
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		// face compare
+		$(function(){
+			$("#face_compare").click(function(){
+				$.ajax({
+					url:'/face_compare',
+					type:'GET',
+					
+					data:{
+						img1:$("#img1").attr("src"),
+						img2:$("#img2").attr("src"),
+						},
+					success: function(data){
+						alert(data);
+					},
+					error: function(data){
+						alert("error");
+					},
+				});
+			});
+		});
+						
+		
+		
+	</script>
 
 </div>
 

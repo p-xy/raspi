@@ -1,20 +1,75 @@
 #-*-coding:utf-8 -*-
 
 from django.shortcuts import render,redirect
+from django.http import HttpResponse
 from django.template import Template
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 import requests
 import json
 import time
-
+import datetime
 from picamera import PiCamera
 import RPi.GPIO as GPIO
 from .models import LED_FORM
 from hardware.led import LED
 from hardware import dht11
 
+@login_required()
+def take_a_photo(request):
+	# initial a camera class
+	camera = PiCamera()
+	#picture 's name is the datetime 
+	now = datetime.datetime.now()
+	face_name = now.strftime('%Y-%m-%d-%H-%M-%S')+'.jpg'
+	# picture 's address
+	face_address = 'app/static/face/'
+	#picture
+	face = face_address + face_name
+	img = "/static/face/" + face_name
+	camera.resolution = (1900,1080)
+	#only user screen can start preview
+	camera.start_preview()
+	#camera need time to prepare 
+	time.sleep(2)
+	# ok,take a picture
+	camera.capture(face,resize=(1024,768))
+	
+	#exit camera
+	camera.close()
+	
+	return HttpResponse(img)
+	
 
+
+@login_required()
+def face_compare(request):
+	face1 = 'app/' + request.GET['img1']
+	face2 = 'app/' + request.GET['img2']
+	# 你的face++的应用api_key和api_secret
+	api_key = 'vigklkgJlKAFaSOuRfQGNcNAPz2Jrkfk'
+	api_secret = 'rnLgNWHIACuE6KcpWIlxf13Bc6uDpqDW'
+	# 接入face++ 人脸比对API
+	url = 'https://api-cn.faceplusplus.com/facepp/v3/compare?api_key=%s&api_secret=%s' % (api_key, api_secret)	
+	# 载入两个本地图片进行比对
+	files = {
+			'image_file1': open(face1, 'rb'),
+			'image_file2': open(face2, 'rb'),
+		}
+
+	# 二进制文件，需要用post multipart/form-data的方式上传
+	r = requests.post(url=url, files=files)
+	#从json数据中获取比对值，值为[0,100]
+	confidence = r.json().get('confidence')
+	#all the json data
+	JSON = r.json()
+								
+	
+	return HttpResponse(confidence)
+	
+
+
+#人脸比对
 @login_required()
 def face(request):
 	return render(request,'face.html')
