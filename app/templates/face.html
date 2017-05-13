@@ -25,9 +25,20 @@
 		padding:40px 0px 20px 0px;
 		text-align:center;
 	}
-	h3{
+	
+
+	.function{
+		margin:50px;
 		text-align:center;
+		color:#000;	
 	}
+	
+	.p1{
+		font-weight:200;
+		font-size:16px;
+		line-height:20px;
+	}
+	
 	
 </style>
 {% endblock %}
@@ -37,16 +48,17 @@
 {% block content %}
 <div class='container'>
 	<div class="row">
-		<div class="col-md-12 text-center">
-			<h1>功能演示</h1>
-			<p>即刻体验Face++的人脸比对能力，对比照片核验用户身份</p>
-			<p>该功能是基于Compare API搭建的，运用Face++的人脸比对技术，打造智能家居刷脸控制</p>
+		<div class="function">
+			<div style="padding:10px;">
+				<h1>功能演示</h1>
+			</div>
+			<p class="p1">即刻体验Face++的人脸比对能力，对比照片核验用户身份</p>
+			<p class="p1">该功能是基于Compare API搭建的，运用Face++的人脸比对技术，打造智能家居刷脸控制</p>
 		</div>
 	</div>
 	<!--图片-->
 	<div class='row'>
 		<div class='col-md-6 text-center'>
-			<h1 >图一</h1>
 			<div class="pic">
 				<div>
 					<img  id="img1" src="/static/img/image1.jpg" width='512' height='324' >
@@ -58,7 +70,6 @@
 		</div>		
 			
 		<div class='col-md-6 text-center '>
-			<h1>图二</h1>
 			<div class="pic">
 				<div>
 					<img id="img2" src="/static/img/image2.jpg" width='512' height='324' >

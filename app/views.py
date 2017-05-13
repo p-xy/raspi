@@ -172,8 +172,9 @@ def control(request):
 		#实例化一个LED类
 		led = LED(40,state)
 		#LED.switch（）为LED类的开关控制方法
-		led.switch()		
-		return HttpResponse('灯已 :' + state)
+		led.switch()
+		response = u'灯已:'+state	
+		return HttpResponse(response)
 				
 	else:
 		
