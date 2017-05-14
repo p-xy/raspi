@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from django.template import Template
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
 import requests
 import json
 import time
@@ -69,14 +70,66 @@ def face_compare(request):
 		}
 
 	# 二进制文件，需要用post multipart/form-data的方式上传
-	r = requests.post(url=url, files=files)
-	#从json数据中获取比对值，值为[0,100]
-	confidence = r.json().get('confidence')
+	r = requests.post(url=url, files=files)	
 	#all the json data
-	JSON = r.json()
-								
+	data = r.json()	
+	faces1 = data.get('faces1')
+	faces2 = data.get('faces2')	
+	JSON = json.dumps(data,indent=1)
+		
+	print('--------------------------')
+	print(data)
+	# check there has two face	
+	if (len(faces1) != 0 ) and (len(faces2) != 0):
+		confidence = data.get('confidence')
+		if confidence >= 60:	
+				
+			compare_result = 'same person'
+			result={ 'compare_result':compare_result,'JSON':JSON }
+			return JsonResponse(result)
+		
+		elif confidence<60:
+			
+			compare_result = 'diffrent peple'
+			result = {'compare_result':compare_result,'JSON':JSON }
+			return JsonResponse(result)
+	else :
+		
+		compare_result = 'can not find face'
+		result = {'compare_result':compare_result,'JSON':JSON }
+		return JsonResponse(result)
+		
+			
+		
+			
 	
-	return HttpResponse(confidence)
+	
+	
+	
+	
+	
+	
+	
+	'''	
+	JSON = json.dumps(data,indent=1)
+	print(JSON)
+	
+	if confidence >= 60:
+		compare_result = 'same person'
+		result={ 'compare_result':compare_result,'JSON':JSON }
+		return JsonResponse(result)
+		
+	elif confidence <60 and confidence != None:
+		compare_result = 'diffrent peple'
+		result = [compare_result,JSON]
+		return HttpResponse(result)
+		
+	elif confidence == None:
+		compare_result = 'can not find face'
+		result = [compare_result,JSON]
+		return HttpResponse(result)
+								
+	'''
 	
 
 

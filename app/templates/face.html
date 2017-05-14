@@ -18,7 +18,9 @@
 	.response{
 		padding:10px;
 		border:1px solid #888888;
-		height:150px;
+		height:200px;
+		background:#fff;
+		padding:0px;
 	}
 	/*人脸比对按钮*/
 	.compare{
@@ -38,6 +40,23 @@
 		font-size:16px;
 		line-height:20px;
 	}
+	h3{
+		text-align:center;
+	}
+
+	textarea{
+		width:530px;
+		overflow-Y:scroll;
+		height:140px;
+		border:0px solid transparent;
+		background:transparent;
+		resize:none;
+		padding-bottom:0px;
+		
+		
+	}
+		
+	
 	
 	
 </style>
@@ -88,19 +107,20 @@
 		</div>
 	</div>
 	
-	<!--人脸比对相应-->
+	<!--人脸比对response-->
 	<div class='row'>
-		<div class="col-md-6">
-				
-			<div class="response">
+		<div class="col-md-6">	
+			<div  class="response">
 				<h3>比对结果</h3>
+				<h4 style="padding:30px;" id="compare_result"></h4>
 			</div>
 		</div>
 		
 		<div class="col-md-6">
 			<div class="response">
 				<h3>Response JSON</h3>
-			</div>
+				<textarea readonly rows="10" rows="30" id="compare_json"></textarea>
+			</div>	
 		</div>	
 	</div>
 	
@@ -123,7 +143,7 @@
 			});
 		});
 		
-	// 异步拍一张照片img2
+		// 异步拍一张照片img2
 		$(function(){
 			$("#take_a_photo2").click(function(){
 				$.ajax({
@@ -141,29 +161,34 @@
 			});
 		});
 
-		
+			
 		
 		// 人脸比对
 		$(function(){
 			$("#face_compare").click(function(){
 				$.ajax({
-					url:'/face_compare',
-					type:'GET',
+					url:"/face_compare",
+					type:"GET",
+					dataType:"json",
 					
 					data:{
 						img1:$("#img1").attr("src"),
 						img2:$("#img2").attr("src"),
 						},
 					success: function(data){
-						alert(data);
+						
+						$("#compare_json").html(data['JSON']);
+						$("#compare_result").html(data['compare_result']);
+						alert(data['JSON'])	
+														
 					},
 					error: function(data){
 						alert("error");
 					},
 				});
 			});
-		});
-						
+		});		
+		
 		
 		
 	</script>
