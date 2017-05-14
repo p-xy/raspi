@@ -1,4 +1,4 @@
-face/*.jpg
+app/static/face/*.jpg
 
 *.pyc
 
