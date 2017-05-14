@@ -17,7 +17,7 @@ from hardware.led import LED
 from hardware import dht11
 
 
-
+#拍照功能
 @login_required()
 def take_a_photo(request):
 	# 实例化一个相机类
@@ -71,66 +71,39 @@ def face_compare(request):
 
 	# 二进制文件，需要用post multipart/form-data的方式上传
 	r = requests.post(url=url, files=files)	
-	#all the json data
-	data = r.json()	
+	#人脸比对的response，是一个json包
+	data = r.json()
+	#人脸数据，若识别不出人脸则为空list
 	faces1 = data.get('faces1')
-	faces2 = data.get('faces2')	
+	faces2 = data.get('faces2')
+	#格式化json数据，以便在html中展示
 	JSON = json.dumps(data,indent=1)
 		
 	print('--------------------------')
 	print(data)
-	# check there has two face	
+	# 若人脸能识别出来，则face1/2事非空list
 	if (len(faces1) != 0 ) and (len(faces2) != 0):
+		#认证系数，[0,100]，大于60则可认为是同一个人
 		confidence = data.get('confidence')
 		if confidence >= 60:	
 				
-			compare_result = 'same person'
+			compare_result = '很大可能是同一个人'
 			result={ 'compare_result':compare_result,'JSON':JSON }
 			return JsonResponse(result)
 		
 		elif confidence<60:
 			
-			compare_result = 'diffrent peple'
+			compare_result = '很大可能不是同一个人'
 			result = {'compare_result':compare_result,'JSON':JSON }
 			return JsonResponse(result)
 	else :
 		
-		compare_result = 'can not find face'
+		compare_result = '未能检测到人脸'
 		result = {'compare_result':compare_result,'JSON':JSON }
+		#使用JsonResponse能更好的返回json数据
 		return JsonResponse(result)
 		
-			
-		
-			
-	
-	
-	
-	
-	
-	
-	
-	
-	'''	
-	JSON = json.dumps(data,indent=1)
-	print(JSON)
-	
-	if confidence >= 60:
-		compare_result = 'same person'
-		result={ 'compare_result':compare_result,'JSON':JSON }
-		return JsonResponse(result)
-		
-	elif confidence <60 and confidence != None:
-		compare_result = 'diffrent peple'
-		result = [compare_result,JSON]
-		return HttpResponse(result)
-		
-	elif confidence == None:
-		compare_result = 'can not find face'
-		result = [compare_result,JSON]
-		return HttpResponse(result)
-								
-	'''
-	
+
 
 
 #人脸比对的页面
@@ -142,47 +115,7 @@ def face(request):
 # 主页
 @login_required()
 def index(request):
-	if request.method == 'POST':
-		face_or_camera = request.POST['face_or_camera']
-		if face_or_camera ==u'人脸比对':
-			# 你的face++的应用api_key和api_secret
-			api_key = 'vigklkgJlKAFaSOuRfQGNcNAPz2Jrkfk'
-			api_secret = 'rnLgNWHIACuE6KcpWIlxf13Bc6uDpqDW'
 
-			# 接入face++ 人脸比对API
-			url = 'https://api-cn.faceplusplus.com/facepp/v3/compare?api_key=%s&api_secret=%s' % (api_key, api_secret)
-
-			# 载入两个本地图片进行比对
-			files = {
-				'image_file1': open('app/static/img/image1.jpg', 'rb'),
-				'image_file2': open('app/static/img/image2.jpg', 'rb'),
-			}
-
-			# 二进制文件，需要用post multipart/form-data的方式上传
-			r = requests.post(url=url, files=files)
-			#从json数据中获取比对值，值为[0,100]
-			confidence = r.json().get('confidence')
-			JSON = r.json()
-
-			return render(request,'index.html',{ 'JSON':JSON,'confidence':confidence })
-			
-		elif face_or_camera ==u'拍个照片':
-			
-			#实例化一个相机类
-			camera = PiCamera()
-			#设置相机分辨率
-			camera.resolution = (1900,1080)
-			#相机预览，很可惜只能在连接了显示器才能预览
-			camera.start_preview()
-			#相机启动需要一定时间
-			time.sleep(2)
-			#拍取一张照片，保存在app/static/img目录下
-			camera.capture('app/static/img/image2.jpg')
-			#关闭相机
-			camera.close()
-			
-			return redirect('/')
-	
 	return render(request,'index.html')
 			
 

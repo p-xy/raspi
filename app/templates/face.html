@@ -134,7 +134,7 @@
 					
 					success: function(data){
 						$("#img1").attr("src",data);
-						alert("success");
+						alert("拍照成功");
 					},
 					error: function(data){
 						aler("error");
@@ -152,7 +152,7 @@
 					
 					success: function(data){
 						$("#img2").attr("src",data);
-						alert("success");
+						alert("拍照成功");
 					},
 					error: function(data){
 						aler("error");
@@ -179,7 +179,7 @@
 						
 						$("#compare_json").html(data['JSON']);
 						$("#compare_result").html(data['compare_result']);
-						alert(data['JSON'])	
+						alert('人脸比对成功')
 														
 					},
 					error: function(data){
