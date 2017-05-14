@@ -1,6 +1,6 @@
-app/static/face/*.jpg
 
 *.pyc
 
+app/static/face/*.jpg
 
 
