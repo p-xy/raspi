@@ -43,30 +43,48 @@
             margin-top:0px;
             
             }
-            
+
+        .statement{
+            padding:30px;
+            }
+
 
 </style>
 {% endblock %}
 {% block title%}控制{% endblock %}
 {% block content %}
 
-<div class="led">
-	<h1>控制灯</h1>
-	<img src="/static/img/led.png" width="50" height="100">
-			
-	<div class="row">			
-		<div>
-			<div>
-				<input id="led_open" class="open_button" type="submit" value="点我开灯">
-			</div>
-			
-			<div>
-				<input id ="led_close" class="close_button" type="submit" value="点我关灯">
-			</div>
-					
-		</div>						
+<div class="row">
+	<div class="statement">
+		<h1>运筹帷幄之中</h1>
+		<p>这里是家电控制区，可以实时、方便的控制家电</p>
 	</div>
 </div>
+
+
+
+<div class="row">
+	<div class="led">
+		<h1>控制灯</h1>
+		<img src="/static/img/led.png" width="50" height="100">
+
+		<div class="row">
+			<div>
+				<div>
+					<input id="led_open" class="open_button" type="submit" value="点我开灯">
+				</div>
+
+				<div>
+					<input id ="led_close" class="close_button" type="submit" value="点我关灯">
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
 <script>
 	// 开灯的ajax请求
 	$(function(){
