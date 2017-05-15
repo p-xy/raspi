@@ -1,20 +1,54 @@
 {% extends "base.html" %}
 {% block head %}
 <style>
-	
+	.content{
+		box-shadow: 0px 0px 25px 1px rgba(50, 50, 50, 0.3);
+
+		
+		
+	}
 	
 </style>
 {% endblock %}
 {% block title%}主页{% endblock %}
 {% block content %}
-<div class='container'>
-	<div class='row'>
-		<p>jee</p>
+<div class="container content">
+	<div class="row" style="">	
+		<!--left-->	
+		<div class="col-md-8" style="border-right:1px solid #eee;padding:70px 0 70px 0;">
+			<div>
+				<h1 style="font-size:60px;">let s make our world smarter</h1>						
+			</div>
+			
+			<div class="text-center">
+				<img src="/static/img/background1.jpeg" width="700" height="512">	
+			</div>
+						
+		</div>
+		<!--right-->
+		<div class="col-md-4" style="padding:70px 0 70px 0;">
+			<div style="margin:0px 35px 0 35px;background:#aaa; padding:20px 20px;">
+				<h3>about me</h3>
+				<div class="text-center">
+					<img src="/static/img/led.png" width="100">
+				</div>
+				
+				<div class="text-left">
+					<h4 >
+						this is my de biye shiji guanyu zhiheng jiaju de 
+						wo yongadfsde jishu pyhoin jacasrisidf
+						uhsdf jifuisosudosdf
+						haiyou sdfdf ddd python sdfsdf 
+					</h4>
+					
+				</div>
+			</div>
+			
+			<h1>sdfsfd</h1>
+		</div>
 	</div>
-	
+
 </div>
-
-
 
 {% endblock%}
 
