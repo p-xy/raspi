@@ -23,15 +23,60 @@
 {% block content %}
 <div class="container">
 	<div class="led text-center" >
-		<h1 class="text-center">灯已：{{ p2 }}</h1>		
-		<img src="/static/img/led.png" width="50" height="100">
-		<h3>{{ p4 }}</h3>
-		<h3>{{ p5 }}</h3>
-		<h3>{{ p6 }}</h3>
+		<h1 class="text-center">灯已：{{ LED }}</h1>		
+		<img src="/static/img/led.png" width="50" height="100">	
+		<div>
+			<h3 id="temperature">{{ temperature }}</h3>
+		</div>
 		
+		<div>
+			<h3 id="humidity">{{ humidity }}</h3>
+		</div>						
 	</div>
-
 </div>
+
+
+<div class="led" style="padding-top:50px;">
+	<h3 id="p0"></h3>	
+	<h3 id="p1"></h3>
+	<h3 id="p2"></h3>
+</div>
+
+
+
+<script>
+	// time function
+	$(document).ready(function(){
+		setInterval("startRequest()",1000); // every 3s do once startRequest()
+			
+	});
+	
+	
+	// startRequest()
+	function startRequest(){
+		
+		var d = new Date();
+		$("#p0").html(d);
+		
+		$.ajax({
+				url:"/look",
+				type:"POST",
+				dataType:"json",
+				data:{
+					csrfmiddlewaretoken:'{{ csrf_token }}'
+				},
+				
+				success:function(data){
+					$("#p1").html(data['temperature']);
+					$("#p2").html(data['humidity']);
+				},
+		});
+	};
+
+
+
+
+</script>
 
 
 

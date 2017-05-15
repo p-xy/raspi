@@ -123,22 +123,39 @@ def index(request):
 #查看状态
 @login_required()
 def look(request):
-	#读取LED开关值
-	p1 = LED_FORM.objects.get(id=1)	#id为LED_FORM表单的外键，存储的开关值的列为switch
-	#把开关值传递给p2，以上下文方式提交到模板
-	p2 = p1.switch
 	
-	# DHT11温/湿度传感器数据
-	instance = dht11.DHT11(8)
-	result = instance.read()
-	if result.is_valid():
-		''' p4 ="Last valid input: " + str(datetime.datetime.now()) '''
+	if request.method == 'POST':
 		
-        p5 = "温度: %d ℃" % result.temperature
-        p6 = "湿度: %d %%" % result.humidity
-        GPIO.cleanup(8)
-        	
-	return render(request,'look.html',{ 'p2':p2 ,'p5':p5,'p6':p6 })
+		# DHT11温/湿度传感器数据
+		instance = dht11.DHT11(8)
+		result = instance.read()
+		
+		#if result.is_valid():
+		temp = "温度: %d ℃" % result.temperature
+		hum = "湿度: %d %%" % result.humidity
+		GPIO.cleanup(8)			
+		return JsonResponse({ 'temperature':temp,'humidity':hum })	
+			
+			
+		
+	else:
+				
+		#读取LED开关值,id为LED_FORM表单的外键，存储的开关值的列为switch
+		led = LED_FORM.objects.get(id=1)	
+		#把开关值传递给LED，以上下文方式提交到模板
+		LED = led.switch
+		
+		# DHT11温/湿度传感器数据
+		instance = dht11.DHT11(8)
+		result = instance.read()
+		
+		if result.is_valid():
+			
+			temp = "温度: %d ℃" % result.temperature
+			hum = "湿度: %d %%" % result.humidity
+			GPIO.cleanup(8)
+				
+		return render(request,'look.html',{ 'LED':LED ,'temperature':temp,'humidity':hum })
 	
 	
 
