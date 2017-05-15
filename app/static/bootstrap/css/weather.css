@@ -1,7 +1,7 @@
-/*本作品由【站长素材】收集整理，转载请注明出处！*/
+
 @import url(http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900);
 body {
-  background-color: #EEEEEE;
+  background-color: #fff;
 }
 
 *, *:before, *:after {
@@ -33,7 +33,7 @@ body {
   position: relative;
   overflow: hidden;
   width: 270px;
-  height: 270px;
+  height: 250px;
   background-color: white;
   box-shadow: 0px 0px 25px 1px rgba(50, 50, 50, 0.1);
   -webkit-animation: appear 500ms ease-out forwards;
@@ -41,11 +41,11 @@ body {
 }
 .weather-card h1 {
   position: absolute;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Lato',sans-serif;
   font-weight: 300;
-  font-size: 80px;
-  color: #B8B8B8;
-  bottom: 0;
+  font-size: 50px;
+  color: #333;
+  bottom: 10;
   left: 35px;
   opacity: 0;
   -webkit-transform: translateX(150px);
@@ -59,7 +59,7 @@ body {
   font-family: 'Lato', sans-serif;
   font-weight: 300;
   font-size: 28px;
-  color: #d2d2d2;
+  color: #333;
   bottom: 0;
   left: 35px;
   -webkit-animation: title-appear 1s ease-out 500ms forwards;

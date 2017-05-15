@@ -2,85 +2,129 @@
 {% block head %}
 <link href="/static/bootstrap/css/weather.css" rel="stylesheet" type="text/css">
 <style>
-	/* 透明块*/
-        .led{
-            margin-left: auto;
-            margin-right: auto;
-            margin-top:30px;
-            text-align: center;
-            background-color: transparent;
-            width: 300px;
-            padding:10px 0 50px 0;
-            border-radius: 20px;
-            border: 1px solid green;
-            box-shadow:10px 10px 5px #888888;
-            color:#000;
-
-            }
+/* 透明块*/
+.led{
+    
+    text-align: center;
+    background-color: transparent;
+    padding:20px 20px;;
+    border-radius: 20px;         
+    box-shadow: 0px 0px 25px 1px rgba(50, 50, 50, 0.1);
+    font-weight: 300;
+    font-size: 50px;
+    color:#333; 
+    width:300px;
+    height:250px;
+	} 
+	
+.statement{
+	margin:0px;
+	border-bottom:1px solid #eee;
+	background:#fff;
+	padding:30px;
+	
+	}
+	
+.time{
+	text-align:center;
+	color:#333;
+	margin:0px;
+	padding:30px;
+	
+	background:#fff;
+	
+	}
+	
+							
+.temperature{
+	background:#fff;
+	margin:0px;
+	padding:20px;
+	}							
+      
+             
+                  
 
 </style>
 {% endblock %}
 {% block title%}查看{% endblock %}
 {% block content %}
-<div class="container">
-	<div class="led text-center" >
-		<h1 class="text-center">灯已：{{ LED }}</h1>		
-		<img src="/static/img/led.png" width="50" height="100">	
-		<div>
-			<h3 id="temperature">{{ temperature }}</h3>
-		</div>
-		
-		<div>
-			<h3 id="humidity">{{ humidity }}</h3>
-		</div>						
+
+<!--statement-->
+<div class="row text-center">
+	<div class="statement">
+		<h1>function display</h1>
+		<p>this is the smart home display</p>
+	</div>	
+</div>
+
+<!--led-->
+<div class="row" style="padding:20px; border-bottom:1px solid #eee;">
+	<div class="col-md-6">
+		<div class="text-center" style="padding:30px;">
+			<h1>moni jiating deng de kaiguan </h1>
+			<p>adsassdfwefweeeeeeeeeeeddasd</p>
+			<p>sfdsdfsdfsdfsdffd</p>
+		</div>		
 	</div>
+	
+	<div class="col-md-6">
+		<div class="led" >
+			<h1 class="text-center">灯已：{{ LED }}</h1>		
+			<img src="/static/img/led.png" width="50" height="100">						
+		</div>		
+	</div>
+
+</div>
+				
+<!--time-->
+<div class="row">
+	<div class="time">
+		<h1>chack out the temperature and humidity</h1>
+		<h3 id="p0"></h3>
+	</div>
+	
 </div>
 
-<div class="weather-wrapper">
-    <div class="weather-card madrid">
-        <div class="weather-icon sun"></div>
-        <h1>26º</h1>
-        <p>厦门</p>
-    </div>
-    <div class="weather-card london">
-        <div class="weather-icon cloud"></div>
-        <h1>14º</h1>
-        <p>上海</p>
-    </div>
-</div>
+<!--temperature-->
+<div class="row temperature">
+	<div class="weather-wrapper">
+		<div class="weather-card madrid">
+			<div class="weather-icon sun"></div>
+				<h1 id="p1"></h1>
+				<p>温度</p>			
+		</div>	
+		<div class="weather-card london">
+			<div class="weather-icon cloud"></div>
+				<h1 id="p2"></h1>
+				<p>湿度</p>			
+		</div>		
+	</div>							
+</div>	
+		
 
 
 
-<div class="led" style="padding-top:50px;">
-	<h3 id="p0"></h3>	
-	<h3 id="p1"></h3>
-	<h3 id="p2"></h3>
-</div>
 
-
+		
 
 <script>
 	// time function
 	$(document).ready(function(){
-		setInterval("startRequest()",1000); // every 3s do once startRequest()
-			
+		setInterval("startRequest()",3000); // every 3s do once startRequest()			
 	});
-	
-	
+		
 	// startRequest()
-	function startRequest(){
-		
+	function startRequest(){		
 		var d = new Date();
-		$("#p0").html(d);
-		
+		$("#p0").html(d);	
 		$.ajax({
 				url:"/look",
 				type:"POST",
 				dataType:"json",
 				data:{
 					csrfmiddlewaretoken:'{{ csrf_token }}'
-				},
-				
+				},				
 				success:function(data){
 					$("#p1").html(data['temperature']);
 					$("#p2").html(data['humidity']);
@@ -88,11 +132,6 @@
 		});
 	};
 
-
-
-
 </script>
-
-
 
 {% endblock%}
