@@ -136,7 +136,7 @@ def look(request):
 			GPIO.cleanup(8)			
 			return JsonResponse({ 'temperature':temp,'humidity':hum })
 		else:
-			return None
+			return HttpResponse('error')
 			
 			
 		
