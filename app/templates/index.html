@@ -1,64 +1,7 @@
 {% extends "base.html" %}
 {% block head %}
 <style>
-	.bigPic{
-		border:1px solid #000;
-		margin:30px;
-		padding:20px 20px;
-		height:500px;
-		
-	}
-		
-		
-	.pic{
-		border:1px solid #000;
-		padding:0px 20px 20px 20px;
-		height:430px
-	}
 	
-	
-	/*表单输入样式*/
-        .input-field {
-            margin:auto;
-            width: 250px;
-            border: 1px solid green;
-            background-color: #fff;
-            border-radius: 4px;
-            height:40px;
-            font-size:16px;
-            
-
-        }
-        /* 登录按钮样式*/
-        .submit-field{
-            width:250px;
-            height:40px;
-            line-height:40px;
-            background-color:#27ae60;
-            color:#fff;
-            letter-spacing:1px;
-            border-radius: 4px;
-            border: 1px solid #27ae60;
-            font-size:16px;
-            margin-top:0px;
-            font-weight:500;
-
-            }
-            
-        /* 透明块*/
-        .div1{
-            margin-left: auto;
-            margin-right: auto;
-            margin-top:30px;
-            text-align: center;
-            background-color: transparent;
-            width: 300px;
-            padding:10px 0 10px 0;
-            border-radius: 5px;
-            border: 1px solid green;
-            color:#000;
-
-            }
 	
 </style>
 {% endblock %}
@@ -66,41 +9,9 @@
 {% block content %}
 <div class='container'>
 	<div class='row'>
-		<div class='bigPic text-center'>
-			
-			<div class='col-md-4 pic'>
-				<h1 >face 1</h1>
-				<img src="/static/img/image1.jpg" width='240' height='320' >			
-			</div>
-			
-			<div class='col-md-4 pic'>
-				<h1 >face 2</h1>
-				<img src="/static/img/image2.jpg" width='240' height='320' >	
-			</div>
-					
-			<div class='col-md-4 pic'>
-				<h1>JSON</h1>
-				<textarea style='width:320px;height:320px;'>
-					{{ JSON }}
-				</textarea>				
-			</div>
-			<h3 >人脸比对置信度: {{ confidence }}，60以上可认为是同一个人</h3>
-		</div>
+		<p>jee</p>
 	</div>
-	<div class="row div1">
-		<form action="" method="post">
-			{% csrf_token %}			
-			<div class="form-group text-center">
-				<select class="form-control input-field" name="face_or_camera">
-					<option>人脸比对</option>
-					<option>拍个照片</option>
-				</select>
-			</div>
-			<div>
-				<input class="submit-field" type="submit" value="提交">
-			</div>								
-		</form>
-	</div>
+	
 </div>
 
 

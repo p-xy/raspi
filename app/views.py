@@ -130,11 +130,13 @@ def look(request):
 		instance = dht11.DHT11(8)
 		result = instance.read()
 		
-		#if result.is_valid():
-		temp = "%d ℃" % result.temperature
-		hum = "%d %%" % result.humidity
-		GPIO.cleanup(8)			
-		return JsonResponse({ 'temperature':temp,'humidity':hum })	
+		if result.is_valid():
+			temp = "%d ℃" % result.temperature
+			hum = "%d %%" % result.humidity
+			GPIO.cleanup(8)			
+			return JsonResponse({ 'temperature':temp,'humidity':hum })
+		else:
+			return 0	
 			
 			
 		
