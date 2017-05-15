@@ -2,86 +2,79 @@
 {% block head %}
 <style>
 	.content{
-		box-shadow: 0px 0px 25px 1px rgba(50, 50, 50, 0.3);
-
+		box-shadow: 0px 0px 25px 1px rgba(50, 50, 50, 0.3);	
+		
+	}
+	.img{
+		
+		background:url("/static/img/background1.jpeg");
+		height:600px;
+		text-align:center;
+		background-position:left top;
+		background-size:880px 580px;
+		background-repeat:no-repeat;
 		
 		
 	}
+	
 	
 </style>
 {% endblock %}
 {% block title%}主页{% endblock %}
 {% block content %}
 <div class="container content">
-	<div class="row" style="">	
-		<!--left-->	
-		<div class="col-md-8" style="border-right:1px solid #eee;padding:70px 0 70px 0;">
-			<div>
-				<h1 style="font-size:60px;">让生活变得更加便捷</h1>
-			</div>
-			
-			<div class="text-center">
-				<img src="/static/img/background1.jpeg" width="700" height="512">	
-			</div>
-
-			<div>
-				1776年，瓦特制造的第一台实用性蒸汽机在英国勃洛姆菲尔德煤矿点火，照亮了
-				人类生活的一个新时代；1947年，美国贝尔实验室发明了晶体管，芯片的集成度
-				以摩尔定律飞速发展，互联网这一项创生新时代的事物出现；在此后短暂的十几年
-				，IT行业出现了惊骇世人的智能手机iPhone，无人驾驶汽车特斯拉，人工智能AlphaGo
-				网络涌现出智能的本质属性，每一个看似愚蠢的电子设备，但将其接入网络，就会像
-				互联网一样拥有潜力。而IP6的问世，更是足够为地球的每一粒沙子赋予网络地址
-				，物联网+人工智能将开启一个人类触摸未来的智能时代。我们正逐渐用无形的设计、
-				灵活性、创新和智能化，以服务和理念为基础的经济迈进，而全新智能城市的构想和设计
-				，会是国家发展战略的一部分。
-
-
-			</div>
+	<div class="row">
+		<div class="col-md-12 text-center">
+			<h1></h1>
 		</div>
-		<!--right-->
-		<div class="col-md-4" style="padding:70px 0 70px 0;">
-			<div style="margin:0px 35px 0 35px;background:#aaa; padding:20px 20px;">
-				<h3>关于树莓派</h3>
-				<div class="text-center">
-					<img src="/static/img/led.png" width="100">
+	</div>
+	
+	
+	<div class="row">	
+		<!--left-->	
+		<div class="col-md-9">		
+			<div class="text-center img">
+				<div style="padding-top:20px;color:#fff;">
+					<p style="font-size:18px;">
+					
+					Who are crazy enough to think that they can change<br> 
+						 the world,	are the ones who do.<br>
+								--Steve Jobs
+					</p>
+				</div>
+				<div style="padding-top:280px;">
+					<p style="font-size:50px;color:#fff;">
+						LET 'S MAKE OUR WORLD <br>
+						BETTER
+					</p>
 				</div>
 				
-				<div class="text-left">
-					<h4 >
-						Raspberry Pi(中文名为“树莓派”,简写为RPi，
-						(或者RasPi / RPI)是为学习计算机编程教育而设计，
-						只有信用卡大小的微型电脑，其系统基于Linux。随着Windows 10 IoT的发布，
+			</div>
+			
+		</div>
+		<!--right-->
+		<div class="col-md-3">
+			<div style=" padding:15px 0 15px 0;box-shadow: 0px 0px 25px 1px rgba(50, 50, 50, 0.1);height:580px;">
+				<h3 class="text-center">关于树莓派</h3>
+				<div class="text-center" style="padding:15px 0 15px 0;">
+					<img src="/static/img/raspi.jpg" width="240">
+				</div>
+				
+				<div class="text-left" style="padding:20px 20px 0px 20px">
+					<p style="line-height:1.6;font-weight:200;" >
+						Raspberry Pi,中文名为“树莓派”,简
+						写为RPi,是为学习计算机编程教育而设计，					
+						只有信用卡大小的微型电脑，其系统基于Linux。
+						随着Windows 10 IoT的发布
 						我们也将可以用上运行Windows的树莓派。
 						自问世以来，受众多计算机发烧友和创客的追捧，
 						曾经一“派”难求。别看其外表“娇小”，内“心”却很强大，
 						视频、音频等功能通通皆有，可谓是“麻雀虽小，五脏俱全”。
-					</h4>
+					</p>
 					
 				</div>
 			</div>
-			<div>
-				<h3>关于本网站</h3>
-				<div>
-					<p>
-						这是一个基于树莓派的智能家居监控系统，可以通过B/S
-						方式了解室内的温、湿度，开关状态及家电设备的控制
-						，其实实现为：在树莓派上以Python+Djano web框架
-						搭建一个具有访问权限的网站，然后在树莓派连接上物理开关
-						或传感器，从而达到控制家居设备。web前端用到了Bootstrap
-						这个Twitter公司开源的前端框架，以及jQuery这个非常好用的
-						JavaScript框架。至于源代码，我用git这个版本控制系统
-						push到github以做备份，这次方程式组织发起的网络病毒攻击
-						导致很多人的文件丢失，网络不安全是常态，要有经常对重要代码的保存
-						的好习惯。
-
-
-					</p>
-
-				</div>
-
-			</div>
-
-			<h1></h1>
+		
 		</div>
 	</div>
 
