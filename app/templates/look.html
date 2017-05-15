@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block head %}
+<link href="/static/bootstrap/css/weather.css" rel="stylesheet" type="text/css">
 <style>
 	/* 透明块*/
         .led{
@@ -34,6 +35,20 @@
 		</div>						
 	</div>
 </div>
+
+<div class="weather-wrapper">
+    <div class="weather-card madrid">
+        <div class="weather-icon sun"></div>
+        <h1>26º</h1>
+        <p>厦门</p>
+    </div>
+    <div class="weather-card london">
+        <div class="weather-icon cloud"></div>
+        <h1>14º</h1>
+        <p>上海</p>
+    </div>
+</div>
+
 
 
 <div class="led" style="padding-top:50px;">

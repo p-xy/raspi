@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5ef9dee5-26e5-45d7-b79d-d3fbb4bb141a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/face.html" afterPath="$PROJECT_DIR$/app/templates/face.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views.py" afterPath="$PROJECT_DIR$/app/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,7 +21,7 @@
         <entry file="file://$PROJECT_DIR$/app/templates/control.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="368">
-              <caret line="52" column="17" lean-forward="true" selection-start-line="52" selection-start-column="17" selection-end-line="52" selection-end-column="17" />
+              <caret line="52" column="17" lean-forward="false" selection-start-line="52" selection-start-column="17" selection-end-line="52" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -44,7 +43,7 @@
         <entry file="file://$PROJECT_DIR$/app/templates/face.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="780">
-              <caret line="192" column="8" lean-forward="true" selection-start-line="192" selection-start-column="8" selection-end-line="192" selection-end-column="8" />
+              <caret line="192" column="8" lean-forward="false" selection-start-line="192" selection-start-column="8" selection-end-line="192" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -178,7 +177,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../matrix" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RunDashboard">
@@ -473,7 +472,7 @@
     <entry file="file://$PROJECT_DIR$/app/templates/face.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="780">
-          <caret line="192" column="8" lean-forward="true" selection-start-line="192" selection-start-column="8" selection-end-line="192" selection-end-column="8" />
+          <caret line="192" column="8" lean-forward="false" selection-start-line="192" selection-start-column="8" selection-end-line="192" selection-end-column="8" />
           <folding />
         </state>
       </provider>
@@ -491,7 +490,7 @@
     <entry file="file://$PROJECT_DIR$/app/templates/control.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="368">
-          <caret line="52" column="17" lean-forward="true" selection-start-line="52" selection-start-column="17" selection-end-line="52" selection-end-column="17" />
+          <caret line="52" column="17" lean-forward="false" selection-start-line="52" selection-start-column="17" selection-end-line="52" selection-end-column="17" />
           <folding />
         </state>
       </provider>
