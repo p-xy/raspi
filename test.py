@@ -1,15 +1,10 @@
 # -*- coding:utf-8 -*-
-
-
 import sys #要重新载入sys。因为 Python 初始化后会删除 sys.setdefaultencoding 这个方 法
 import os
 import requests
-import json
 
 reload(sys) 
 sys.setdefaultencoding('utf-8')
-
-
 
  #百度TTS地址
 base_url = "https://openapi.baidu.com/oauth/2.0/token"
@@ -31,21 +26,17 @@ print(access_token)
 
 #--------------语音合成
 url_1 =  'http://tsn.baidu.com/text2audio'
-tex = '你好世界今天'
+tex1 = '当前正在请求拍照，请保持微笑姿势'
+tex2 = '真正在进行人脸比对，请稍等'
 lan = 'zh'
 tok = access_token
 ctp = 1
 cuid = '28-D2-44-02-98-59'
 
-url_2 = '%s?tex=%s&lan=%s&tok=%s&ctp=1&cuid=%s' % (url_1,tex,lan,tok,cuid)
+cammer_url = '%s?tex=%s&lan=%s&tok=%s&ctp=1&cuid=%s' % (url_1,tex1,lan,tok,cuid)
+facce_url = '%s?tex=%s&lan=%s&tok=%s&ctp=1&cuid=%s' % (url_1,tex2,lan,tok,cuid)
 
-response = requests.post(url=url_2)
-print(response)
 
-os.system('mpg123"%s"' % (url_2)
+os.system(' mpg123"%s" ' % (url_2))
 
-'''
-#-----------
-http://tsn.baidu.com/text2audio?tex=你好世界今天很没很开心&lan=zh&ctp=1&cuid=28-D2-44-02-98-59&tok=24.46f74783c330e23b48fbfff49949b8fd.2592000.1497498906.282335-9650693
-
-'''
+'
