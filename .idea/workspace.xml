@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5ef9dee5-26e5-45d7-b79d-d3fbb4bb141a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/index.html" afterPath="$PROJECT_DIR$/app/templates/index.html" />
-    </list>
+    <list default="true" id="5ef9dee5-26e5-45d7-b79d-d3fbb4bb141a" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,7 +18,7 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/templates/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-162">
+            <state relative-caret-position="378">
               <caret line="62" column="25" lean-forward="false" selection-start-line="62" selection-start-column="25" selection-end-line="62" selection-end-column="25" />
               <folding />
             </state>
@@ -260,7 +257,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1378" height="744" extended-state="0" />
+    <frame x="-8" y="-8" width="1378" height="744" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14684288" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -472,7 +469,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-162">
+        <state relative-caret-position="378">
           <caret line="62" column="25" lean-forward="false" selection-start-line="62" selection-start-column="25" selection-end-line="62" selection-end-column="25" />
           <folding />
         </state>
