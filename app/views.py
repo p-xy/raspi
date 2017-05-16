@@ -15,7 +15,8 @@ import RPi.GPIO as GPIO
 from .models import LED_FORM
 from hardware.led import LED
 from hardware import dht11
-
+import os
+import sys
 
 #拍照功能
 @login_required()
@@ -40,7 +41,26 @@ def take_a_photo(request):
 	camera.resolution = (1900,1080)
 	#相机预览，很可惜只有接上显示屏才能预览，ssh方式无法预览
 	camera.start_preview()
+	
+	#-----------------------voice --------------------
+	reload(sys) 
+	sys.setdefaultencoding('utf-8')
+	access_token = '24.e424356c9a2ce71d33069d0da8802ffc.2592000.1497505014.282335-9650693'
+	url_1 =  'http://tsn.baidu.com/text2audio'
+	tex1 = '当前正在请求拍照，请保持微笑姿势'
+	
+	lan = 'zh'
+	tok = access_token
+	ctp = 1
+	cuid = '28-D2-44-02-98-59'
 
+	camera_url = '%s?tex=%s&lan=%s&tok=%s&ctp=1&cuid=%s' % (url_1,tex1,lan,tok,cuid)
+	
+	os.system(' mpg123 "%s" ' % (camera_url))
+	#-----------------------------------------------------
+	
+		
+	
 	#相机启动需要点时间
 	time.sleep(2)
 	# 拍照，把大小裁剪为1024x768，太大不适合提交给人脸比对
@@ -78,6 +98,24 @@ def face_compare(request):
 	faces2 = data.get('faces2')
 	#格式化json数据，以便在html中展示
 	JSON = json.dumps(data,indent=1)
+	
+	#-----------------------------------face voice-----------------
+	reload(sys) 
+	sys.setdefaultencoding('utf-8')
+	access_token = '24.e424356c9a2ce71d33069d0da8802ffc.2592000.1497505014.282335-9650693'
+	url_1 =  'http://tsn.baidu.com/text2audio'
+	
+	tex2 = '正在进行人脸比对，请稍等'
+	lan = 'zh'
+	tok = access_token
+	ctp = 1
+	cuid = '28-D2-44-02-98-59'
+	
+	face_url = '%s?tex=%s&lan=%s&tok=%s&ctp=1&cuid=%s' % (url_1,tex2,lan,tok,cuid)
+	os.system(' mpg123 "%s" ' % (face_url))
+	time.sleep(1)
+	
+	#---------------------
 		
 	print('--------------------------')
 	print(data)

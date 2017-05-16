@@ -2,6 +2,7 @@
 import sys #要重新载入sys。因为 Python 初始化后会删除 sys.setdefaultencoding 这个方 法
 import os
 import requests
+import json
 
 reload(sys) 
 sys.setdefaultencoding('utf-8')
@@ -21,6 +22,10 @@ r = requests.post(url=url)
 data = r.json()
 #拿到access_token，用于语音合成
 access_token = data["access_token"]
+
+#access_token = '24.e424356c9a2ce71d33069d0da8802ffc.2592000.1497505014.282335-9650693'
+
+
 JSON = json.dumps(data,indent=1)
 print(access_token)
 
@@ -33,10 +38,10 @@ tok = access_token
 ctp = 1
 cuid = '28-D2-44-02-98-59'
 
-cammer_url = '%s?tex=%s&lan=%s&tok=%s&ctp=1&cuid=%s' % (url_1,tex1,lan,tok,cuid)
-facce_url = '%s?tex=%s&lan=%s&tok=%s&ctp=1&cuid=%s' % (url_1,tex2,lan,tok,cuid)
+camera_url = '%s?tex=%s&lan=%s&tok=%s&ctp=1&cuid=%s' % (url_1,tex1,lan,tok,cuid)
+face_url = '%s?tex=%s&lan=%s&tok=%s&ctp=1&cuid=%s' % (url_1,tex2,lan,tok,cuid)
 
 
-os.system(' mpg123"%s" ' % (url_2))
+os.system(' mpg123 "%s" ' % (face_url))
 
-'
+
