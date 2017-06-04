@@ -15,11 +15,11 @@ class Relay(object):
 		#设置pin脚为输出
 		GPIO.setup(self.pin_number,GPIO.OUT)
 		#输出高电平
-		GPIO.output(self.pin_number,HIGH)
+		GPIO.output(self.pin_number,GPIO.HIGH)
 		#高电平持续一秒
 		time.sleep(1)
 		#输出低电平继电器不工作
-		GPIO.output(self.pin_number,LOW)
+		GPIO.output(self.pin_number,GPIO.LOW)
 		#清理IO口
 		GPIO.cleanup(self.pin_number)
 	
