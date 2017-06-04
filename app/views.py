@@ -14,6 +14,7 @@ from picamera import PiCamera
 import RPi.GPIO as GPIO
 from .models import LED_FORM
 from hardware.led import LED
+from hardware.relay import Relay
 from hardware import dht11
 import os
 import sys
@@ -42,25 +43,25 @@ def take_a_photo(request):
 	#相机预览，很可惜只有接上显示屏才能预览，ssh方式无法预览
 	camera.start_preview()
 	
-	#-----------------------voice --------------------
-	reload(sys) 
+	#------------百度语音合成 --------------------
+	reload(sys)
+	# 设置系统的编码为utf-8
 	sys.setdefaultencoding('utf-8')
+	#百度语音合成的应用认证码
 	access_token = '24.e424356c9a2ce71d33069d0da8802ffc.2592000.1497505014.282335-9650693'
+	#调用语音合成需要的参数
 	url_1 =  'http://tsn.baidu.com/text2audio'
-	tex1 = '当前正在请求拍照，请保持微笑姿势'
-	
+	tex1 = '当前正在请求拍照'
 	lan = 'zh'
 	tok = access_token
 	ctp = 1
 	cuid = '28-D2-44-02-98-59'
 
 	camera_url = '%s?tex=%s&lan=%s&tok=%s&ctp=1&cuid=%s' % (url_1,tex1,lan,tok,cuid)
-	
+	#使用mpg123解析语音
 	os.system(' mpg123 "%s" ' % (camera_url))
-	#-----------------------------------------------------
-	
-		
-	
+	#----------相机操作--------------------
+
 	#相机启动需要点时间
 	time.sleep(2)
 	# 拍照，把大小裁剪为1024x768，太大不适合提交给人脸比对
@@ -99,13 +100,13 @@ def face_compare(request):
 	#格式化json数据，以便在html中展示
 	JSON = json.dumps(data,indent=1)
 	
-	#-----------------------------------face voice-----------------
+	#----------------------人脸比对语音提示-----------------
 	reload(sys) 
 	sys.setdefaultencoding('utf-8')
 	access_token = '24.e424356c9a2ce71d33069d0da8802ffc.2592000.1497505014.282335-9650693'
 	url_1 =  'http://tsn.baidu.com/text2audio'
 	
-	tex2 = '正在进行人脸比对，请稍等'
+	tex2 = '正在进行人脸比对'
 	lan = 'zh'
 	tok = access_token
 	ctp = 1
@@ -116,16 +117,18 @@ def face_compare(request):
 	time.sleep(1)
 	
 	#---------------------
-		
-	print('--------------------------')
+
 	print(data)
-	# 若人脸能识别出来，则face1/2事非空list
+	# 若人脸能识别出来，则face1/2是非空list
 	if (len(faces1) != 0 ) and (len(faces2) != 0):
 		#认证系数，[0,100]，大于60则可认为是同一个人
 		confidence = data.get('confidence')
 		if confidence >= 60:	
 				
 			compare_result = '很大可能是同一个人'
+			# 若是同一个人，则门开
+			door = Relay(11)
+			door.open()
 			result={ 'compare_result':compare_result,'JSON':JSON }
 			return JsonResponse(result)
 		
