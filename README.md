@@ -24,12 +24,20 @@ raspi是我本科毕业论文的一个paper，从2017年3月到6月份完成，�
 #### 首页
 ![home](app/static/img/home.png)
 #### 人脸比对
+face++的人脸识别技术真是太棒了，支付宝刷脸付款用的也是face++，呐，我用face++的时候老罗的坚果pro2还没用上呢，哈哈。
+
 ![face](app/static/img/face.png)
 #### 查看温湿度
+温湿度用的是DHT11这个模块，说来奇葩，和我同一组的两个妹子用的也是DHT11，答辩的时候老师很不高兴。其实最重要的是温湿度显示的实时性，使用ajax和定时器，每隔几秒从后台读取一次数据。
+
 ![look](app/static/img/look.png)
 #### LED模拟控制室内灯光
+本来导师强调要控制空调、电视机等一些比较现实的家电的，但想到答辩的时候也不会提供这些，也不好展示，因此就只控制了一个LED，有点囧o(╯□╰)o
+
 ![LED](app/static/img/control.png)
 #### 登录界面
+没啥好说的，django提供了login验证，只要在后台注册管理员账户，一切都so easy～
+
 ![login](app/static/img/login.png)
 
 
