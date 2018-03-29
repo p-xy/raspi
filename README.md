@@ -29,6 +29,9 @@ raspi是我本科毕业论文的一个paper，从2017年3月到6月份完成，�
 ![look](app/static/img/look.png)
 #### LED模拟控制室内灯光
 ![LED](app/static/img/control.png)
+#### 登录界面
+![login](app/static/img/login.png)
+
 
 ## 如何在本地运行
 - 安装django1.11 + python2.7 ，注意django的2.0版本和1版本不兼容。
