@@ -1,84 +1,23 @@
 {% extends "base.html" %}
 {% block head %}
 <style>
-	.content{
-		box-shadow: 0px 0px 25px 1px rgba(50, 50, 50, 0.3);	
-		
-	}
-	.img{
-		
-		background:url("/static/img/background1.jpeg");
-		height:600px;
-		text-align:center;
-		background-position:left top;
-		background-size:880px 580px;
-		background-repeat:no-repeat;
-		
-		
-	}
-	
-	
+	.index{
+		height:300px;
+		color:#26aa60;
+		}
 </style>
 {% endblock %}
 {% block title%}主页{% endblock %}
 {% block content %}
-<div class="container content">
-	<div class="row">
-		<div class="col-md-12 text-center">
-			<h1></h1>
-		</div>
-	</div>
-	
-	
-	<div class="row">	
-		<!--left-->	
-		<div class="col-md-9">		
-			<div class="text-center img">
-				<div style="padding-top:20px;color:#fff;">
-					<p style="font-size:18px;">
-					
-					Who are crazy enough to think that they can change<br> 
-						 the world,	are the ones who do.<br>
-								--Steve Jobs
-					</p>
-				</div>
-				<div style="padding-top:280px;">
-					<p style="font-size:50px;color:#fff;">
-						LET 'S MAKE OUR WORLD <br>
-						BETTER
-					</p>
-				</div>
-				
-			</div>
-			
-		</div>
-		<!--right-->
-		<div class="col-md-3">
-			<div style=" padding:15px 0 15px 0;box-shadow: 0px 0px 25px 1px rgba(50, 50, 50, 0.1);height:580px;">
-				<h3 class="text-center">关于树莓派</h3>
-				<div class="text-center" style="padding:15px 0 15px 0;">
-					<img src="/static/img/raspi.jpg" width="240">
-				</div>
-				
-				<div class="text-left" style="padding:20px 20px 0px 20px">
-					<p style="line-height:1.6;font-weight:200;" >
-						Raspberry Pi,中文名为“树莓派”,简
-						写为RPi,是为学习计算机编程教育而设计，					
-						只有信用卡大小的微型电脑，其系统基于Linux。
-						随着Windows 10 IoT的发布
-						我们也将可以用上运行Windows的树莓派。
-						自问世以来，受众多计算机发烧友和创客的追捧，
-						曾经一“派”难求。别看其外表“娇小”，内“心”却很强大，
-						视频、音频等功能通通皆有，可谓是“麻雀虽小，五脏俱全”。
-					</p>
-					
-				</div>
-			</div>
-		
+<div class="row index">
+	<div class="col-md-12 ">
+		<div class="container text-center">
+			<h1>index</h1>
 		</div>
 	</div>
 
 </div>
 
-{% endblock%}
 
+
+{% endblock%}

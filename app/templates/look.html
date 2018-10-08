@@ -1,133 +1,16 @@
 {% extends "base.html" %}
 {% block head %}
-<link href="/static/bootstrap/css/weather.css" rel="stylesheet" type="text/css">
 <style>
-/* 透明块*/
-.led{
-    
-    text-align: center;
-    background-color: transparent;
-    padding:20px 20px;;
-    border-radius: 20px;         
-    box-shadow: 0px 0px 25px 1px rgba(50, 50, 50, 0.1);
-    font-weight: 300;
-    font-size: 50px;
-    color:#333; 
-    width:300px;
-    height:250px;
-	} 
-	
-.statement{
-	margin:0px;
-	border-bottom:1px solid #eee;
-	background:#fff;
-	padding:30px;
-	
-	}
-	
-.time{
-	text-align:center;
-	color:#333;
-	margin:0px;
-	padding:30px;
-	
-	background:#fff;
-	
-	}
-	
-							
-.temperature{
-	background:#fff;
-	margin:0px;
-	padding:0 0 60px 0;
-	}							
-      
-
 
 </style>
 {% endblock %}
 {% block title%}查看{% endblock %}
 {% block content %}
-
-<div class="container" style="box-shadow: 0px 0px 25px 1px rgba(50, 50, 50, 0.3);">
-<!--statement-->
-<div class="row text-center">
-	<div class="statement">
-		<h1>一览众山小</h1>
-		<p>智能时代，连接一切可以连接的，数据化一切可以数据化的。</p>
-	</div>	
-</div>
-
-<!--led-->
-<div class="row" style="padding:40px; border-bottom:1px solid #eee;">
-	<div class="col-md-6">
-		<div class="text-center" style="padding:30px;">
-			<h1>模拟灯光 </h1>
-			<p>这里模拟的是家庭的灯光</p>
-			<p>在这里仅提供查看，若要控制开关请移步控制区</p>
-		</div>		
-	</div>
-	
-	<div class="col-md-6">
-		<div class="led" >
-			<h1 class="text-center">灯已：{{ LED }}</h1>		
-			<img src="/static/img/led.png" width="50" height="100">						
-		</div>		
-	</div>
+<div class="container">
+	<h1 class="text-center">查看页面</h1>
 
 </div>
-				
-<!--time-->
-<div class="row">
-	<div class="time">
-		<h1>室内的温/湿度</h1>
-		<h3 id="p0"></h3>
-	</div>
-	
-</div>
 
-<!--temperature-->
-<div class="row temperature">
-	<div class="weather-wrapper">
-		<div class="weather-card madrid">
-			<div class="weather-icon sun"></div>
-				<h1 id="p1"></h1>
-				<p>温度</p>			
-		</div>
 
-		<div class="weather-card london">
-			<div class="weather-icon cloud"></div>
-				<h1 id="p2"></h1>
-				<p>湿度</p>			
-		</div>		
-	</div>							
-</div>
-
-</div>
-<script>
-	// time function
-	$(document).ready(function(){
-		setInterval("startRequest()",1000); // every 3s do once startRequest()			
-	});
-		
-	// startRequest()
-	function startRequest(){		
-		var d = new Date();
-		$("#p0").html(d);	
-		$.ajax({
-				url:"/look",
-				type:"POST",
-				dataType:"json",
-				data:{
-					csrfmiddlewaretoken:'{{ csrf_token }}'
-				},				
-				success:function(data){
-					$("#p1").html(data['temperature']);
-					$("#p2").html(data['humidity']);
-				},
-		});
-	};
-
-</script>
 
 {% endblock%}

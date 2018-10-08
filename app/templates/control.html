@@ -1,130 +1,17 @@
 {% extends "base.html" %}
 {% block head %}
 <style>
-	/* 透明块*/
-        .led{
-            margin-left: auto;
-            margin-right: auto;
-            margin-top:30px;
-            margin-bottom:30px;
-            text-align: center;
-            background-color: transparent;
-            width: 300px;
-            padding:10px 0 40px 0;
-            border-radius: 20px;
-           
-            color:#333;
-            box-shadow: 0px 0px 25px 1px rgba(50, 50, 50, 0.1);
-
-            }
-        /*开灯按钮样式*/
-		.open_button{
-            width:250px;
-            height:40px;
-            line-height:40px;
-            background-color:#27aa60;
-            color:#fff;
-            border-radius: 4px;
-            border: 1px solid #27aa60;
-            font-size:16px;
-            margin:30px;
-            
-            }     
-        
-         /*关灯按钮样式*/
-        .close_button{
-            width:250px;
-            height:40px;
-            line-height:40px;
-            background-color:#333;
-            color:#fff;
-            border-radius: 4px;
-            border: 1px solid #333;
-            font-size:16px;
-            margin-top:0px;
-            
-            }
-
-        .statement{
-            padding:30px;
-            text-align:center;
-            border-bottom:1px solid #eee;
-            }
-
 
 </style>
 {% endblock %}
 {% block title%}控制{% endblock %}
 {% block content %}
-<div class="container" style="box-shadow: 0px 0px 25px 1px rgba(50, 50, 50, 0.3);">
 
-<div class="row">
-	<div class="statement">
-		<h1>运筹帷幄之中</h1>
-		<p>这里是家电控制区，可以实时、方便的控制家电</p>
-	</div>
-</div>
-
-<div class="row">
-	<div class="led">
-		<h1>控制灯</h1>
-		<img src="/static/img/led.png" width="50" height="100">
-
-		<div class="row">
-			<div>
-				<div>
-					<input id="led_open" class="open_button" type="submit" value="点我开灯">
-				</div>
-
-				<div>
-					<input id ="led_close" class="close_button" type="submit" value="点我关灯">
-				</div>
-
-			</div>
-		</div>
-	</div>
-</div>
+<div class="container">
+	<h1 class="text-center"> 控制页面</h1>
 
 </div>
 
-<script>
-	// 开灯的ajax请求
-	$(function(){
-		$("#led_open").click(function(){
-			$.ajax({
-				url:"/control",
-				type:'POST',
-				data:{
-					switch:'开',
-					csrfmiddlewaretoken:'{{ csrf_token }}',
-					},
-				dataType:"text",
-				success: function(data){
-					alert(data);
-				},
-			});
-		});
-	});
 
-	// 关灯的ajax请求
-	$(function(){
-		$("#led_close").click(function(){
-			$.ajax({
-				url:"/control",
-				type:'POST',
-				data:{
-					switch:'关',
-					csrfmiddlewaretoken:'{{ csrf_token }}',
-					},
-				dataType:"text",
-				success: function(data){
-					alert(data);
-				},
-			});
-		});
-	});
-
-
-</script>
 
 {% endblock%}

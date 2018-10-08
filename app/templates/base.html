@@ -3,9 +3,6 @@
 <head>
     <meta charset="utf-8">
     <title>{% block title %}{% endblock %}</title>
-    <!--js-->
-	<script src="/static/bootstrap/js/jquery.min.js"></script>
-	<script src="/static/bootstrap/js/bootstrap.min.js"></script>
     <!--添加bootstrap-->
 	<link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
 	<!--添加favicon-->
@@ -13,63 +10,72 @@
 	<!--block for head-->
 	{% block head %}{% endblock %}
 	<style>
-
-		/* header 绿色背景 */
-		.banner-green{
-			position: relative;
-            height:300px;
-            background-color: #27ae60;
-            color: #fff;
+		/* 若不添加，则整个页面的css被canvas优先级覆盖*/
+		.position{
+			background-color:transparent;
+			position:absolute;
+            left:0;
+            right:0;
+            top:0;
+            bottom:0;
+            margin:auto;
 			}
+
+
+
 
 		/* 导航条定位 */
         .nav-position{
-        	padding-top:20px;
-    		background-color: #27ae60;
+        	padding-top:10px;
+    		background-color:transparent;
     		border-bottom:0;
     		margin-bottom:0;
     		}
 
-		/* 设置导航条链接颜色为白色 */
-    	.navbar-default .navbar-nav > li > a {color: #fff;}
+		/* 设置导航条链接颜色 */
+    	.navbar-default .navbar-nav > li > a {color: #26aa60;}
 
-		/*  内容区高为100%可以使footer置底部，前提是html,body也设置为高100% */
-		.content{
-					min-height: 100%;
-					height: auto;
-					height: 100%;
+		/* 简介*/
+		.matrix{
 
-					}
+           	margin:20px auto 70px auto;
+      		text-align: center;
+           	width: 500px;
+       		text-align:center;
+			background-color:transparent;
+			color:#27aa60;
+			padding:20px 0;
+			border-radius: 20px;
+            border: 1px solid green;
 
+			}
 
 
 		/* 页脚 */
+
 		.footer1{
-					background-color:#27ae60;
-					color: #fff;
-					line-height:1.6;
-					padding:30px;
-					font-weight:200;
-					
+			color:#27ae60;
+			background-color:rgba(0,0,0,.4);
+			padding:50px 0 20px 0;
 
-					}
-
-		.footer2{
-
-					background-color:#26aa60;
-					color: #fff;
-					padding:15px;
-					text-align:center;
-					font-weight:200;
-
-					}
-
-
-		html,body {	height: 100%; 
+			line-height:1.6;
+			border-top: 1px solid green;
 			}
 
+		.footer2{
+			background-color:rgba(0,0,0,0.4);
+			color: #26aa60;
+			padding:15px;
+			text-align:center;
+			font-weight:200;
+
+			}
+
+
+
+
 		a{
-			color:#fff;
+			color:#26aa60;
 		}
 
 
@@ -77,9 +83,15 @@
 
 </head>
 <body>
-<!--带导航的页头-->
-<header role="banner">
-	<div class="banner-green">
+<!--maxtrix 背景-->
+<div  style="position:fixed; left:0; top:0px; width:100%; height:100%;">
+	<canvas id="q" width="1440" height="900"></canvas>
+</div>
+
+<!--整个html页面内容-->
+<div class="position">
+	<!--页头-->
+	<header role="banner" style="border-bottom:1px solid green;">
 		<!--导航条-->
 		<nav role="navigation" class="navbar navbar-static-top navbar-default nav-position">
 			<div class="container">
@@ -100,80 +112,82 @@
 				<form class="collapse navbar-collapse" id="myheader">
 					<ul class="nav navbar-nav navbar-right ">
 						<li><a href="/"><span class="glyphicon glyphicon-home"></span>主页</a></li>
-						<li><a href="/face"><span class="glyphicon glyphicon-user"></span> 人脸比对 </a></li>
-						<li><a href="/look"><span class="glyphicon glyphicon-eye-open"></span> 查看状态 </a></li>
+						<li><a href="/look" ><span class="glyphicon glyphicon-eye-open"></span> 查看状态 </a></li>
 						<li><a href="/control"><span class="glyphicon glyphicon-cog"></span> 控制开关 </a></li>
-						<li><a href="/logout"><span class="glyphicon glyphicon-off"></span> 退出 </a></li>
+						<li><a href="/logout"><span class="glyphicon glyphicon-user"></span> 退出 </a></li>
 					</ul>
 				</form>
 			</div>
 		</nav>
-		<!--raspi简介-->
-		<div style="text-align:center;">
-			<h1 style="font-size:56px;text-shadow:-5px 5px 0px rgba(0,0,0,.2);">Raspi</h1>
+		<!--matrix简介-->
+		<div class="matrix">
+			<h1 style="font-size:56px;text-shadow:-5px 5px 0px rgba(0,0,0,.2);">Matrix</h1>
 			<p style="font-size:21px;font-weight: 200;">查看、控制家居设备的Web服务，让家尽在掌控</p>
 			<p style="font-weight:200;">基于树莓派，使用Python-django、Bootstrap开发</p>
 			<p style="font-weight:200;">源码托管于Github :
 				<a href="https://www.github.com/wonderX0/raspi.git"><img src="/static/img/favicon.ico"></a>
 			</p>
 		</div>
-	</div>
-</header>
+	</header>
 
-<!--内容区-->
-<main role="main">
-	{% block content %} {% endblock %}
-</main>
+	<!--内容区-->
+	<main role="main" style="margin:50px 0;">
+		{% block content %} {% endblock %}
+	</main>
 
-<!--页脚-->
-<footer>
-	<div class="row footer1">
-		<!--空块-->
-		<div class="col-md-2"></div>
-		<div class="col-md-3" >
-			<ul>
-				<h4>官方网站</h4>
-				<li><a href="https://www.python.org/">Python.org</a></li>
-				<li><a href="https://www.raspberrypi.org/">树莓派官网</a></li>
-				<li><a href="https://www.djangoproject.com/">Django official website</a></li>
-				<li><a href="">Bootstrap中文网</a></li>
-				<li><a href="https://jquery.com">Jquery.com</a></li>
-			</ul>
+	<!--页脚-->
+	<footer>
+		<div class="row footer1">
+			<!--空块-->
+			<div class="col-md-2"></div>
+			<div class="col-md-3" >
+				<ul>
+					<h4>官方网站</h4>
+					<li><a href="https://www.python.org/">Python.org</a></li>
+					<li><a href="https://www.raspberrypi.org/">树莓派官网</a></li>
+					<li><a href="https://www.djangoproject.com/">Django official website</a></li>
+					<li><a href="">Bootstrap中文网</a></li>
+					<li><a href="https://jquery.com">Jquery.com</a></li>
+				</ul>
+			</div>
+			<div class="col-md-3">
+				<ul >
+					<h4>参考链接</h4>
+					<li><a href="http://www.cnblogs.com/vamei/archive/2012/09/13/2682778.html">Raspberry Pi 3 无显示器 安装指南</a></li>
+					<li><a href="http://www.cnblogs.com/vamei/archive/2012/10/10/2718229.html" >从树莓派开始玩电脑</a></li>
+					<li><a href="http://www.cnblogs.com/fnng/category/581256.html">虫师的博客园：随笔分类-django</a></li>
+					<li><a href="http://www.cnblogs.com/vamei/archive/2012/09/13/2682778.html">Vamei的博客园：Python快速教程</a></li>
+					<li><a href="http://elinux.org/RPi_GPIO_Code_Samples">RPi GPIO Code Samples</a></li>
+				</ul>
+			</div>
+			<div class="col-md-3">
+				<ul>
+					<h4 >Just For Fun</h4>
+					<p>
+						这是我做的第一个网站，<br>
+						一次不算成熟的试炼，<br>仅有
+						一个登录系统，<br>it's so
+						simple and stupid。
+
+					</p>
+				</ul>
+			</div>
+			<!--空块-->
+			<div class="col-md-2"></div>
 		</div>
-		<div class="col-md-3">
-			<ul >
-				<h4>参考链接</h4>
-				<li><a href="http://www.cnblogs.com/vamei/archive/2012/09/13/2682778.html">Raspberry Pi 3 无显示器 安装指南</a></li>
-				<li><a href="http://www.cnblogs.com/vamei/archive/2012/10/10/2718229.html" >从树莓派开始玩电脑</a></li>
-				<li><a href="http://www.cnblogs.com/fnng/category/581256.html">虫师的博客园：随笔分类-django</a></li>
-				<li><a href="http://www.cnblogs.com/vamei/archive/2012/09/13/2682778.html">Vamei的博客园：Python快速教程</a></li>
-				<li><a href="http://elinux.org/RPi_GPIO_Code_Samples">RPi GPIO Code Samples</a></li>
-			</ul>
+		<!--版权-->
+		<div class="row footer2" >
+			<div class="col-md-12" >
+				<p style="margin:0;">Copyright © 2017 by GUET 1300240121</p>
+			</div>
 		</div>
-		<div class="col-md-3">
-			<ul>
-				<h4 >Just For Fun</h4>
-				<p>
-					这是我做的第一个网站，<br>
-					一次不算成熟的试炼，<br>仅有
-					一个登录系统，<br>it's so
-					simple and stupid。
+	</footer>
+</div>
 
+	<!--js-->
+	<script src="/static/bootstrap/js/jquery.min.js"></script>
+	<script src="/static/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/static/js/matrix.js"></script>
 
-				</p>
-
-			</ul>
-		</div>
-		<!--空块-->
-		<div class="col-md-2"></div>
-	</div>
-	<!--版权-->
-	<div class="row footer2 >
-		<div class="col-md-12">
-			<p style="margin:0;">Copyright © 2017 by GUET 1300240121</p>
-		</div>
-	</div>
-</footer>
-	
 </body>
 </html>
